@@ -22,7 +22,7 @@ import { COMPANY } from "../data/company";
       <h2 class="text-2xl font-bold text-brand-dark mb-6 flex items-center gap-2">
         <span class="text-brand-accent">🚛</span> 不用品回収 料金目安
       </h2>
-      <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <div class="overflow-x-auto rounded-md border border-gray-200">
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-brand-primary text-white">
@@ -60,7 +60,7 @@ import { COMPANY } from "../data/company";
       <h2 class="text-2xl font-bold text-brand-dark mb-6 flex items-center gap-2">
         <span class="text-brand-accent">✨</span> ハウスクリーニング 料金目安
       </h2>
-      <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <div class="overflow-x-auto rounded-md border border-gray-200">
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-brand-primary text-white">
@@ -96,7 +96,7 @@ import { COMPANY } from "../data/company";
     </section>
 
     <!-- 支払い方法 -->
-    <section class="mb-10 bg-brand-secondary rounded-xl p-6">
+    <section class="mb-10 bg-brand-secondary rounded-md p-6">
       <h2 class="text-xl font-bold text-brand-dark mb-4">お支払い方法</h2>
       <div class="flex flex-wrap gap-3">
         {
@@ -110,14 +110,14 @@ import { COMPANY } from "../data/company";
     </section>
 
     <!-- CTA -->
-    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+    <div class="text-center bg-brand-primary text-white rounded-lg p-8">
       <h2 class="text-xl font-bold mb-2">無料見積もりのご依頼</h2>
-      <p class="text-blue-200 mb-6">まずはお気軽にご連絡ください。見積もりは無料です。</p>
+      <p class="text-white/70 mb-6">まずはお気軽にご連絡ください。見積もりは無料です。</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
           {COMPANY.tel} に電話する
         </a>
-        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-md hover:bg-orange-600 transition-colors">
           メールで相談する
         </a>
       </div>

@@ -33,7 +33,7 @@ const steps = [
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       {
         steps.map((step, index) => (
-          <div class="relative bg-white rounded-xl p-6 shadow-sm">
+          <div class="relative bg-white rounded-md p-6 shadow-sm">
             {/* 矢印（最後以外） */}
             {index < steps.length - 1 && (
               <div class="hidden md:block absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-brand-accent text-xl font-bold">

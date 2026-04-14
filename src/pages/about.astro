@@ -14,7 +14,7 @@ import { COMPANY } from "../data/company";
     <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8">会社概要</h1>
 
     <!-- 代表メッセージ -->
-    <section class="bg-brand-secondary rounded-2xl p-8 mb-10">
+    <section class="bg-brand-secondary rounded-lg p-8 mb-10">
       <h2 class="text-xl font-bold text-brand-dark mb-4">代表メッセージ</h2>
       <p class="text-gray-700 leading-relaxed">
         ルネデザインは、お客様の「困った」を素早く・丁寧に解決することを使命としています。
@@ -27,7 +27,7 @@ import { COMPANY } from "../data/company";
     <!-- 会社情報テーブル -->
     <section class="mb-10">
       <h2 class="text-xl font-bold text-brand-dark mb-4">会社情報</h2>
-      <dl class="divide-y divide-gray-200 border border-gray-200 rounded-xl overflow-hidden">
+      <dl class="divide-y divide-gray-200 border border-gray-200 rounded-md overflow-hidden">
         {
           [
             { label: "会社名", value: COMPANY.name },
@@ -37,7 +37,7 @@ import { COMPANY } from "../data/company";
             { label: "営業時間", value: COMPANY.hours },
             { label: "対応エリア", value: COMPANY.areaServed.join("・") },
           ].map((row) => (
-            <div class="grid grid-cols-3 gap-4 px-6 py-4 bg-white even:bg-gray-50">
+            <div class="grid grid-cols-3 gap-4 px-6 py-4 bg-white even:bg-[#f8f7f6]">
               <dt class="font-bold text-brand-primary text-sm">{row.label}</dt>
               <dd class="col-span-2 text-gray-700 text-sm">{row.value}</dd>
             </div>
@@ -84,12 +84,12 @@ import { COMPANY } from "../data/company";
     </section>
 
     <!-- お問い合わせCTA -->
-    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+    <div class="text-center bg-brand-primary text-white rounded-lg p-8">
       <h2 class="text-xl font-bold mb-2">ご不明な点はお気軽にお問い合わせください</h2>
-      <p class="text-blue-200 mb-6">お見積もり無料・年中無休で対応しています</p>
+      <p class="text-white/70 mb-6">お見積もり無料・年中無休で対応しています</p>
       <a
         href="/contact/"
-        class="inline-flex items-center gap-2 bg-brand-accent text-white font-bold px-8 py-3 rounded-xl hover:bg-orange-600 transition-colors"
+        class="inline-flex items-center gap-2 bg-brand-accent text-white font-bold px-8 py-3 rounded-md hover:bg-orange-600 transition-colors"
       >
         お問い合わせはこちら
       </a>

@@ -18,9 +18,9 @@ import { COMPANY } from "../../data/company";
     />
 
     <!-- ヘッダー -->
-    <div class="bg-brand-primary text-white rounded-2xl p-8 mb-10">
+    <div class="bg-brand-primary text-white rounded-lg p-8 mb-10">
       <h1 class="text-3xl md:text-4xl font-bold mb-3">ハウスクリーニング</h1>
-      <p class="text-blue-200 text-lg">プロ用機材と専用洗剤で、隅々まで徹底クリーニング</p>
+      <p class="text-white/70 text-lg">プロ用機材と専用洗剤で、隅々まで徹底クリーニング</p>
     </div>
 
     <!-- 特長 -->
@@ -34,7 +34,7 @@ import { COMPANY } from "../../data/company";
             { icon: "🌿", title: "安全な洗剤", body: "お子様・ペット・アレルギーをお持ちの方向けに、低刺激洗剤オプションをご用意。" },
             { icon: "📋", title: "丁寧な完了報告", body: "作業後にチェックシートでご確認いただきます。仕上がりにご満足いただけるまで対応します。" },
           ].map((feature) => (
-            <div class="bg-brand-secondary rounded-xl p-5">
+            <div class="bg-brand-secondary rounded-md p-5">
               <div class="text-3xl mb-2">{feature.icon}</div>
               <h3 class="font-bold text-brand-dark mb-1">{feature.title}</h3>
               <p class="text-sm text-gray-600 leading-relaxed">{feature.body}</p>
@@ -60,7 +60,7 @@ import { COMPANY } from "../../data/company";
             { name: "換気扇", note: "油汚れ徹底除去" },
             { name: "建物全体（まるごと）", note: "退去・入居前清掃" },
           ].map((menu) => (
-            <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <div class="bg-white border border-gray-200 rounded-md p-4">
               <p class="font-bold text-brand-dark text-sm">{menu.name}</p>
               <p class="text-xs text-gray-500 mt-1">{menu.note}</p>
             </div>
@@ -76,14 +76,14 @@ import { COMPANY } from "../../data/company";
     </section>
 
     <!-- CTA -->
-    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+    <div class="text-center bg-brand-primary text-white rounded-lg p-8">
       <h2 class="text-xl font-bold mb-2">まずはお気軽にご相談ください</h2>
-      <p class="text-blue-200 mb-6">お見積もり無料・{COMPANY.hours}</p>
+      <p class="text-white/70 mb-6">お見積もり無料・{COMPANY.hours}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
           {COMPANY.tel} に電話する
         </a>
-        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-md hover:bg-orange-600 transition-colors">
           メールで相談する
         </a>
       </div>

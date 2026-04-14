@@ -26,7 +26,7 @@ const posts = (await getCollection("blog")).sort(
         posts.map((post) => (
           <a
             href={`/blog/${post.id}/`}
-            class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+            class="group bg-white rounded-md shadow-sm hover:shadow-md transition-shadow overflow-hidden"
           >
             <div class="bg-brand-primary h-2 group-hover:bg-brand-accent transition-colors" />
             <div class="p-6">

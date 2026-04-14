@@ -1,14 +1,45 @@
 @import "tailwindcss";
 
+/* ========================================
+   SmartHR Design System トークン適用
+   https://smarthr.design/
+   ======================================== */
+
+/* 游ゴシック Windows 対応（SmartHR 公式手法） */
+@font-face {
+  font-family: AdjustedYuGothic;
+  font-weight: 400;
+  src: local("Yu Gothic Medium"), local("YuGothic-Medium");
+}
+@font-face {
+  font-family: AdjustedYuGothic;
+  font-weight: 700;
+  src: local("Yu Gothic Bold"), local("YuGothic-Bold");
+}
+
 @theme {
-  /* ブランドカラー */
-  --color-brand-primary: #1e3a5f;    /* ネイビー（信頼・プロフェッショナル） */
-  --color-brand-secondary: #e8f4f8;  /* ライトブルー（清潔感） */
-  --color-brand-accent: #f97316;     /* オレンジ（CTA・行動促進） */
-  --color-brand-dark: #1a1a2e;       /* 濃紺（テキスト） */
+  /* ブランドカラー（SmartHR Product Main） */
+  --color-brand-primary:   #0077c7;   /* Product Main — ボタン・アクティブ状態 */
+  --color-brand-secondary: #f8f7f6;   /* Stone 01 — ページ背景 */
+  --color-brand-accent:    #ff9900;   /* Orange Accent — CTA */
+  --color-brand-dark:      #23221e;   /* Text Black — 本文・見出し */
+
+  /* SmartHR 追加トークン */
+  --color-shr-brand:       #00c4cc;   /* SmartHR Blue（ロゴ・チャート専用） */
+  --color-shr-text-grey:   #706d65;   /* Text Grey — 補足テキスト */
+  --color-shr-text-disable:#c1bdb7;   /* Disabled */
+  --color-shr-stone-2:     #edebe8;   /* Stone 02 — テーブルヘッダー */
+  --color-shr-stone-3:     #aaa69f;   /* Stone 03 — 補助ボーダー */
+  --color-shr-stone-4:     #4e4c49;   /* Stone 04 — 濃いグレー */
+  --color-shr-border:      #d6d3d0;   /* Border — 区切り線・入力枠 */
+  --color-shr-surface:     #ffffff;   /* Surface — コンポーネント背景 */
+  --color-shr-over-bg:     #f2f1f0;   /* Over Background */
+  --color-shr-danger:      #e01e5a;   /* Danger — エラー・削除 */
+  --color-shr-link:        #0071c1;   /* Text Link */
+  --color-shr-hover:       #005a9e;   /* Primary ボタン hover */
 
   /* フォント */
-  --font-sans: "Noto Sans JP", sans-serif;
+  --font-sans: AdjustedYuGothic, "Yu Gothic", YuGothic, "Hiragino Sans", sans-serif;
 }
 
 @layer base {
@@ -19,9 +50,22 @@
   body {
     font-family: var(--font-sans);
     color: var(--color-brand-dark);
+    background-color: var(--color-brand-secondary);
+    line-height: 1.5;
+    overflow-wrap: break-word;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.4;
+  h1, h2, h3 {
+    line-height: 1.25;
+    font-weight: 700;
+  }
+
+  h4, h5, h6 {
+    line-height: 1.5;
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--color-shr-link);
   }
 }

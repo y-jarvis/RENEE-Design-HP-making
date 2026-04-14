@@ -31,7 +31,7 @@ import { COMPANY } from "../data/company";
             { icon: "🏆", title: "適切な許認可", body: "古物商許可・廃棄物収集運搬業許可を取得。適正処理を行います。" },
             { icon: "📅", title: "年中無休", body: "土日祝日も営業。8:00〜20:00の間でご都合の良い時間にお伺いします。" },
           ].map((reason) => (
-            <div class="text-center bg-brand-secondary rounded-xl p-6">
+            <div class="text-center bg-brand-secondary rounded-md p-6">
               <div class="text-4xl mb-3">{reason.icon}</div>
               <h3 class="font-bold text-brand-dark mb-2">{reason.title}</h3>
               <p class="text-sm text-gray-600 leading-relaxed">{reason.body}</p>
@@ -52,7 +52,7 @@ import { COMPANY } from "../data/company";
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
           SERVICES.map((service) => (
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
               <div class="bg-brand-primary h-3" />
               <div class="p-8">
                 <h3 class="text-xl font-bold text-brand-dark mb-1">{service.title}</h3>

@@ -85,14 +85,14 @@ const articleSchema = {
     </article>
 
     <!-- CTA -->
-    <div class="mt-12 bg-brand-primary text-white rounded-2xl p-8 text-center">
+    <div class="mt-12 bg-brand-primary text-white rounded-lg p-8 text-center">
       <h2 class="text-xl font-bold mb-2">ご相談・お見積もりはお気軽に</h2>
-      <p class="text-blue-200 mb-6">無料・{COMPANY.hours}</p>
+      <p class="text-white/70 mb-6">無料・{COMPANY.hours}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
           {COMPANY.tel} に電話する
         </a>
-        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-md hover:bg-orange-600 transition-colors">
           メールで相談する
         </a>
       </div>
