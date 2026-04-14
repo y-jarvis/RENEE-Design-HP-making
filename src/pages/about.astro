@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/seo/Breadcrumb.astro";
+import { COMPANY } from "../data/company";
+---
+
+<BaseLayout
+  title="会社概要"
+  description={`${COMPANY.name}の会社概要ページ。会社情報・所在地・保有許認可・代表メッセージをご確認いただけます。`}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "会社概要", href: "/about/" }]} />
+
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8">会社概要</h1>
+
+    <!-- 代表メッセージ -->
+    <section class="bg-brand-secondary rounded-2xl p-8 mb-10">
+      <h2 class="text-xl font-bold text-brand-dark mb-4">代表メッセージ</h2>
+      <p class="text-gray-700 leading-relaxed">
+        ルネデザインは、お客様の「困った」を素早く・丁寧に解決することを使命としています。
+        不用品回収・ハウスクリーニングを通じて、より快適な生活空間づくりのお手伝いをしてまいります。
+        適切な許認可のもと、環境に配慮した適正処理を徹底し、地域社会への貢献を続けてまいります。
+      </p>
+      <p class="mt-4 font-bold text-brand-primary">代表取締役 〇〇 〇〇</p>
+    </section>
+
+    <!-- 会社情報テーブル -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-brand-dark mb-4">会社情報</h2>
+      <dl class="divide-y divide-gray-200 border border-gray-200 rounded-xl overflow-hidden">
+        {
+          [
+            { label: "会社名", value: COMPANY.name },
+            { label: "所在地", value: `〒${COMPANY.address.postalCode} ${COMPANY.address.addressRegion}${COMPANY.address.addressLocality}${COMPANY.address.streetAddress}` },
+            { label: "電話番号", value: COMPANY.tel },
+            { label: "メールアドレス", value: COMPANY.email },
+            { label: "営業時間", value: COMPANY.hours },
+            { label: "対応エリア", value: COMPANY.areaServed.join("・") },
+          ].map((row) => (
+            <div class="grid grid-cols-3 gap-4 px-6 py-4 bg-white even:bg-gray-50">
+              <dt class="font-bold text-brand-primary text-sm">{row.label}</dt>
+              <dd class="col-span-2 text-gray-700 text-sm">{row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- 許認可情報 -->
+    {
+      COMPANY.licenses.length > 0 && (
+        <section class="mb-10">
+          <h2 class="text-xl font-bold text-brand-dark mb-4">許認可・資格</h2>
+          <ul class="space-y-2">
+            {COMPANY.licenses.map((license) => (
+              <li class="flex items-center gap-2 text-gray-700">
+                <span class="text-brand-accent font-bold">✓</span>
+                {license}
+              </li>
+            ))}
+          </ul>
+          <p class="mt-3 text-sm text-gray-500">
+            ※ 適切な許認可のもと、廃棄物の適正処理を行っております。
+          </p>
+        </section>
+      )
+    }
+
+    <!-- サービスエリア -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-brand-dark mb-4">対応エリア</h2>
+      <p class="text-gray-700 mb-3">
+        以下のエリアを中心に対応しております。エリア外の場合もお気軽にご相談ください。
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {
+          COMPANY.areaServed.map((area) => (
+            <span class="bg-brand-secondary text-brand-primary font-medium px-3 py-1 rounded-full text-sm">
+              {area}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- お問い合わせCTA -->
+    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-2">ご不明な点はお気軽にお問い合わせください</h2>
+      <p class="text-blue-200 mb-6">お見積もり無料・年中無休で対応しています</p>
+      <a
+        href="/contact/"
+        class="inline-flex items-center gap-2 bg-brand-accent text-white font-bold px-8 py-3 rounded-xl hover:bg-orange-600 transition-colors"
+      >
+        お問い合わせはこちら
+      </a>
+    </div>
+  </div>
+</BaseLayout>

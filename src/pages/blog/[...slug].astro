@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import { COMPANY } from "../../data/company";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.data.title,
+  description: post.data.description,
+  author: {
+    "@type": "Organization",
+    name: COMPANY.name,
+    url: COMPANY.siteUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: COMPANY.name,
+    url: COMPANY.siteUrl,
+  },
+  datePublished: post.data.publishDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.publishDate).toISOString(),
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${COMPANY.siteUrl}/blog/${post.id}/`,
+  },
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  schema={articleSchema}
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <Breadcrumb
+      items={[
+        { name: "お役立ち情報", href: "/blog/" },
+        { name: post.data.title, href: `/blog/${post.slug}/` },
+      ]}
+    />
+
+    <article>
+      <header class="mb-8">
+        <span class="inline-block text-xs bg-brand-secondary text-brand-primary font-bold px-2 py-1 rounded-full mb-3">
+          {post.data.category}
+        </span>
+        <h1 class="text-2xl md:text-3xl font-bold text-brand-dark leading-tight mb-4">
+          {post.data.title}
+        </h1>
+        <div class="flex items-center gap-3 text-sm text-gray-500">
+          <time datetime={post.data.publishDate.toISOString()}>
+            {post.data.publishDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}
+          </time>
+          <span>・</span>
+          <span>{post.data.author}</span>
+        </div>
+      </header>
+
+      <div class="prose prose-gray max-w-none
+        [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-brand-dark [&_h2]:mt-8 [&_h2]:mb-4
+        [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-brand-dark [&_h3]:mt-6 [&_h3]:mb-3
+        [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:mb-4
+        [&_ul]:space-y-1 [&_ul]:mb-4 [&_li]:text-gray-700
+        [&_table]:w-full [&_table]:border-collapse [&_table]:mb-4
+        [&_th]:bg-brand-primary [&_th]:text-white [&_th]:px-4 [&_th]:py-2 [&_th]:text-left [&_th]:text-sm
+        [&_td]:border [&_td]:border-gray-200 [&_td]:px-4 [&_td]:py-2 [&_td]:text-sm [&_td]:text-gray-700
+        [&_strong]:font-bold [&_strong]:text-brand-dark
+        [&_hr]:my-8 [&_hr]:border-gray-200
+      ">
+        <Content />
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <div class="mt-12 bg-brand-primary text-white rounded-2xl p-8 text-center">
+      <h2 class="text-xl font-bold mb-2">ご相談・お見積もりはお気軽に</h2>
+      <p class="text-blue-200 mb-6">無料・{COMPANY.hours}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで相談する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

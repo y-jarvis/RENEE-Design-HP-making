@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import { COMPANY } from "../../data/company";
+---
+
+<BaseLayout
+  title="ハウスクリーニング"
+  description={`${COMPANY.name}のハウスクリーニングサービス。エアコン・浴室・キッチンなど、プロの技術で頑固な汚れもスッキリ。入居前後も対応。`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Breadcrumb
+      items={[
+        { name: "サービス一覧", href: "/services/" },
+        { name: "ハウスクリーニング", href: "/services/house-cleaning/" },
+      ]}
+    />
+
+    <!-- ヘッダー -->
+    <div class="bg-brand-primary text-white rounded-2xl p-8 mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">ハウスクリーニング</h1>
+      <p class="text-blue-200 text-lg">プロ用機材と専用洗剤で、隅々まで徹底クリーニング</p>
+    </div>
+
+    <!-- 特長 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">サービスの特長</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          [
+            { icon: "🔧", title: "プロ用機材使用", body: "業務用高圧洗浄機・専用洗剤を使用。市販品では落とせない頑固な汚れも対応します。" },
+            { icon: "🏠", title: "入居前後も対応", body: "引越し前の新居クリーニングや退去時の原状回復クリーニングも承ります。" },
+            { icon: "🌿", title: "安全な洗剤", body: "お子様・ペット・アレルギーをお持ちの方向けに、低刺激洗剤オプションをご用意。" },
+            { icon: "📋", title: "丁寧な完了報告", body: "作業後にチェックシートでご確認いただきます。仕上がりにご満足いただけるまで対応します。" },
+          ].map((feature) => (
+            <div class="bg-brand-secondary rounded-xl p-5">
+              <div class="text-3xl mb-2">{feature.icon}</div>
+              <h3 class="font-bold text-brand-dark mb-1">{feature.title}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{feature.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- メニュー -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">クリーニングメニュー</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {
+          [
+            { name: "エアコン", note: "フィルター〜内部まで" },
+            { name: "浴室・バスルーム", note: "カビ・水垢対応" },
+            { name: "キッチン・レンジフード", note: "油汚れ完全除去" },
+            { name: "トイレ", note: "便器・壁・床" },
+            { name: "洗面所", note: "鏡・蛇口の水垢も" },
+            { name: "窓・サッシ", note: "内外両面対応" },
+            { name: "フローリング", note: "ワックスがけも可" },
+            { name: "換気扇", note: "油汚れ徹底除去" },
+            { name: "建物全体（まるごと）", note: "退去・入居前清掃" },
+          ].map((menu) => (
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+              <p class="font-bold text-brand-dark text-sm">{menu.name}</p>
+              <p class="text-xs text-gray-500 mt-1">{menu.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">よくある質問</h2>
+      <FAQ category="cleaning" />
+    </section>
+
+    <!-- CTA -->
+    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-2">まずはお気軽にご相談ください</h2>
+      <p class="text-blue-200 mb-6">お見積もり無料・{COMPANY.hours}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで相談する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import { COMPANY } from "../../data/company";
+---
+
+<BaseLayout
+  title="不用品回収"
+  description={`${COMPANY.name}の不用品回収サービス。家具・家電・引越しゴミなど一点から部屋丸ごとまで最短即日対応。お見積もり無料。`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Breadcrumb
+      items={[
+        { name: "サービス一覧", href: "/services/" },
+        { name: "不用品回収", href: "/services/junk-removal/" },
+      ]}
+    />
+
+    <!-- ヘッダー -->
+    <div class="bg-brand-primary text-white rounded-2xl p-8 mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">不用品回収</h1>
+      <p class="text-blue-200 text-lg">家具・家電・引越しゴミなど、何でもお任せください</p>
+    </div>
+
+    <!-- 特長 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">サービスの特長</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          [
+            { icon: "⚡", title: "最短即日対応", body: "お電話いただいた当日〜翌日の対応が可能。急なお引越しや大掃除にも対応します。" },
+            { icon: "📦", title: "一点〜部屋丸ごとまで", body: "ソファ一点でも、部屋まるごとの片付けでも対応。量に関係なくご相談ください。" },
+            { icon: "🚛", title: "搬出まで一括対応", body: "分別・梱包・搬出まですべて対応。お客様はご立ち合いだけでOKです。" },
+            { icon: "♻️", title: "適正処理・リサイクル", body: "家電リサイクル法に基づく適正処理。状態の良いものはリサイクルし環境にも配慮。" },
+          ].map((feature) => (
+            <div class="bg-brand-secondary rounded-xl p-5">
+              <div class="text-3xl mb-2">{feature.icon}</div>
+              <h3 class="font-bold text-brand-dark mb-1">{feature.title}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{feature.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 対応品目 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">主な対応品目</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {
+          [
+            "ソファ・椅子", "ベッド・マットレス", "タンス・棚", "テレビ・モニター",
+            "冷蔵庫・洗濯機", "電子レンジ", "パソコン・PC", "自転車・バイク",
+            "本・雑誌", "衣類・布団", "食器・雑貨", "引越し荷物まとめて",
+          ].map((item) => (
+            <div class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-center text-gray-700">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-3 text-sm text-gray-500">※ 上記以外もお気軽にご相談ください</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">よくある質問</h2>
+      <FAQ category="junk" />
+    </section>
+
+    <!-- CTA -->
+    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-2">まずはお気軽にご相談ください</h2>
+      <p class="text-blue-200 mb-6">お見積もり無料・{COMPANY.hours}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで相談する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

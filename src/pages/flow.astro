@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/seo/Breadcrumb.astro";
+import { COMPANY } from "../data/company";
+---
+
+<BaseLayout
+  title="ご利用の流れ"
+  description={`${COMPANY.name}のご利用の流れ。お問い合わせから作業完了まで、わかりやすく4ステップでご説明します。`}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "ご利用の流れ", href: "/flow/" }]} />
+
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">ご利用の流れ</h1>
+    <p class="text-gray-600 mb-12">
+      お問い合わせから作業完了まで、シンプルな4ステップです。<br />
+      ご不明な点はいつでもお気軽にお問い合わせください。
+    </p>
+
+    <div class="space-y-8">
+      {
+        [
+          {
+            step: "01",
+            title: "お問い合わせ",
+            desc: "電話・メール・LINEでお気軽にご連絡ください。サービス内容・日時・場所をお伺いします。その場で概算費用もお伝えできます。",
+            tips: ["電話：8:00〜20:00（年中無休）", "メール：24時間受付", "返信は通常当日〜翌営業日"],
+          },
+          {
+            step: "02",
+            title: "無料お見積もり",
+            desc: "現地へお伺いし、作業内容・量・状況を確認したうえで正確なお見積もりをご提示します。見積もりは完全無料です。内容にご納得いただいてから作業開始です。",
+            tips: ["見積もり費用は0円", "追加費用は事前説明・確認必須", "断っても費用は発生しません"],
+          },
+          {
+            step: "03",
+            title: "作業実施",
+            desc: "ご指定の日時にスタッフが伺い、作業を開始します。搬出・清掃・廃棄まで一括対応。お客様はご立ち合いいただくだけです。",
+            tips: ["ご不在対応も可（要事前相談）", "作業中の状況はご説明します", "後片付け・養生も丁寧に"],
+          },
+          {
+            step: "04",
+            title: "お支払い・完了",
+            desc: "作業完了後に仕上がりをご確認いただき、問題なければお支払いです。現金・クレジットカード・PayPayなど各種対応しています。",
+            tips: ["現金/カード/PayPay対応", "領収書発行可", "アフターフォローも安心"],
+          },
+        ].map((item) => (
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-brand-primary text-white font-black text-lg flex items-center justify-center shrink-0">
+                {item.step}
+              </div>
+              <div class="w-0.5 bg-gray-200 flex-1 mt-2" />
+            </div>
+            <div class="pb-8 flex-1">
+              <h2 class="text-xl font-bold text-brand-dark mb-3">{item.title}</h2>
+              <p class="text-gray-700 leading-relaxed mb-4">{item.desc}</p>
+              <ul class="space-y-1">
+                {item.tips.map((tip) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <span class="text-brand-accent">✓</span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-8 text-center bg-brand-primary text-white rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-2">まずはお問い合わせください</h2>
+      <p class="text-blue-200 mb-6">お見積もり無料・{COMPANY.hours}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで相談する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

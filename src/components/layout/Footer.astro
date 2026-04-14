@@ -1,0 +1,55 @@
+---
+import { COMPANY } from "../../data/company";
+import { NAV_LINKS } from "../../data/navigation";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-dark text-white">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- 会社情報 -->
+      <div>
+        <p class="text-xl font-bold mb-3">
+          <span class="text-brand-accent">R</span>{COMPANY.name}
+        </p>
+        <p class="text-gray-400 text-sm leading-relaxed">{COMPANY.tagline}</p>
+        <div class="mt-4 space-y-1 text-sm text-gray-300">
+          <p>〒{COMPANY.address.postalCode}</p>
+          <p>{COMPANY.address.addressRegion}{COMPANY.address.addressLocality}{COMPANY.address.streetAddress}</p>
+          <a href={COMPANY.telHref} class="block hover:text-brand-accent transition-colors">
+            TEL: {COMPANY.tel}
+          </a>
+          <p>営業時間: {COMPANY.hours}</p>
+        </div>
+      </div>
+
+      <!-- サービス -->
+      <div>
+        <h3 class="font-bold mb-3 text-gray-200">サービス</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/services/junk-removal/" class="hover:text-brand-accent transition-colors">不用品回収</a></li>
+          <li><a href="/services/house-cleaning/" class="hover:text-brand-accent transition-colors">ハウスクリーニング</a></li>
+          <li><a href="/price/" class="hover:text-brand-accent transition-colors">料金案内</a></li>
+          <li><a href="/flow/" class="hover:text-brand-accent transition-colors">ご利用の流れ</a></li>
+        </ul>
+      </div>
+
+      <!-- リンク -->
+      <div>
+        <h3 class="font-bold mb-3 text-gray-200">会社情報</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/about/" class="hover:text-brand-accent transition-colors">会社概要</a></li>
+          <li><a href="/faq/" class="hover:text-brand-accent transition-colors">よくある質問</a></li>
+          <li><a href="/blog/" class="hover:text-brand-accent transition-colors">お役立ち情報</a></li>
+          <li><a href="/contact/" class="hover:text-brand-accent transition-colors">お問い合わせ</a></li>
+          <li><a href="/privacy/" class="hover:text-brand-accent transition-colors">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+      <p>&copy; {year} {COMPANY.name}. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>

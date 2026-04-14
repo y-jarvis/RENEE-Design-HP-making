@@ -1,0 +1,61 @@
+---
+import { COMPANY } from "../../data/company";
+
+interface Props {
+  schema?: object | object[];
+}
+
+const { schema } = Astro.props;
+
+// LocalBusiness スキーマ（全ページ共通）
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+  name: COMPANY.name,
+  description: COMPANY.description,
+  url: COMPANY.siteUrl,
+  telephone: COMPANY.tel,
+  email: COMPANY.email,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "JP",
+    postalCode: COMPANY.address.postalCode,
+    addressRegion: COMPANY.address.addressRegion,
+    addressLocality: COMPANY.address.addressLocality,
+    streetAddress: COMPANY.address.streetAddress,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: COMPANY.geo.lat,
+    longitude: COMPANY.geo.lng,
+  },
+  openingHours: COMPANY.openingHours,
+  priceRange: "¥¥",
+  areaServed: COMPANY.areaServed,
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "サービス一覧",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "不用品回収" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "ハウスクリーニング" },
+      },
+    ],
+  },
+  ...(COMPANY.licenses.length > 0 && { hasCredential: COMPANY.licenses }),
+};
+
+const schemas = schema
+  ? [localBusiness, ...(Array.isArray(schema) ? schema : [schema])]
+  : [localBusiness];
+---
+
+{
+  schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))
+}

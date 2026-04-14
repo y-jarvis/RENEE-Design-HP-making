@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import { SERVICES } from "../../data/services";
+import { COMPANY } from "../../data/company";
+---
+
+<BaseLayout
+  title="サービス一覧"
+  description={`${COMPANY.name}のサービス一覧。不用品回収・ハウスクリーニングの2つのサービスをご提供しています。`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "サービス一覧", href: "/services/" }]} />
+
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">サービス一覧</h1>
+    <p class="text-gray-600 mb-10">
+      不用品回収からハウスクリーニングまで、お客様のご要望に合わせて対応いたします。
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        SERVICES.map((service) => (
+          <a
+            href={service.href}
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+          >
+            <div class="bg-brand-primary h-2 group-hover:bg-brand-accent transition-colors" />
+            <div class="p-8">
+              <h2 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-accent transition-colors">
+                {service.title}
+              </h2>
+              <p class="text-sm text-gray-500 mb-3">{service.subtitle}</p>
+              <p class="text-gray-700 leading-relaxed mb-5">{service.description}</p>
+              <ul class="space-y-2 mb-6">
+                {service.features.map((f) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-700">
+                    <span class="text-brand-accent font-bold">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <span class="inline-flex items-center gap-1 text-brand-primary font-bold group-hover:text-brand-accent transition-colors">
+                詳しく見る
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

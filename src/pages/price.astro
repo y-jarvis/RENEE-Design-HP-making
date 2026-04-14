@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/seo/Breadcrumb.astro";
+import { COMPANY } from "../data/company";
+---
+
+<BaseLayout
+  title="料金案内"
+  description={`${COMPANY.name}の料金案内。不用品回収・ハウスクリーニングの料金目安をご確認いただけます。お見積もり無料。`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "料金案内", href: "/price/" }]} />
+
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">料金案内</h1>
+    <p class="text-gray-600 mb-10">
+      以下は料金の目安です。実際の料金はお見積もり時にご確認ください。<br />
+      <strong>追加費用は事前にご説明・ご確認してから作業開始します。</strong>
+    </p>
+
+    <!-- 不用品回収 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6 flex items-center gap-2">
+        <span class="text-brand-accent">🚛</span> 不用品回収 料金目安
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-brand-primary text-white">
+              <th class="text-left px-6 py-3">プラン</th>
+              <th class="text-left px-6 py-3">目安量</th>
+              <th class="text-right px-6 py-3">料金（税込）</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            {
+              [
+                { plan: "単品回収", volume: "1〜2点（ソファ・洗濯機等）", price: "¥5,000〜" },
+                { plan: "軽トラック1台", volume: "軽量〜中量（押入れ1部屋分程度）", price: "¥15,000〜" },
+                { plan: "2tトラック1台", volume: "中量〜大量（1DK丸ごと程度）", price: "¥35,000〜" },
+                { plan: "大型パック", volume: "大量（2LDK以上）", price: "要見積もり" },
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td class="px-6 py-4 font-medium text-brand-dark">{row.plan}</td>
+                  <td class="px-6 py-4 text-gray-600">{row.volume}</td>
+                  <td class="px-6 py-4 text-right font-bold text-brand-primary">{row.price}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-gray-500">
+        ※ 上記は税込の目安料金です。搬出作業の難易度・距離・品目により変動することがあります。
+        追加費用が発生する場合は必ず事前にご説明します。
+      </p>
+    </section>
+
+    <!-- ハウスクリーニング -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6 flex items-center gap-2">
+        <span class="text-brand-accent">✨</span> ハウスクリーニング 料金目安
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-brand-primary text-white">
+              <th class="text-left px-6 py-3">箇所</th>
+              <th class="text-left px-6 py-3">内容</th>
+              <th class="text-right px-6 py-3">料金（税込）</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            {
+              [
+                { place: "エアコン（壁掛け）", detail: "フィルター・内部洗浄", price: "¥12,000〜" },
+                { place: "浴室（ユニットバス）", detail: "カビ・水垢・床・天井", price: "¥18,000〜" },
+                { place: "キッチン・レンジフード", detail: "油汚れ・換気扇分解洗浄", price: "¥20,000〜" },
+                { place: "トイレ", detail: "便器・床・壁・換気扇", price: "¥10,000〜" },
+                { place: "洗面所", detail: "洗面台・鏡・蛇口", price: "¥8,000〜" },
+                { place: "建物まるごと（1K/1R）", detail: "退去・入居前クリーニング", price: "¥40,000〜" },
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td class="px-6 py-4 font-medium text-brand-dark">{row.place}</td>
+                  <td class="px-6 py-4 text-gray-600">{row.detail}</td>
+                  <td class="px-6 py-4 text-right font-bold text-brand-primary">{row.price}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-gray-500">
+        ※ 上記は税込の目安料金です。間取り・汚れの程度により変動します。
+        現地確認後に正確なお見積もりをご提示します。
+      </p>
+    </section>
+
+    <!-- 支払い方法 -->
+    <section class="mb-10 bg-brand-secondary rounded-xl p-6">
+      <h2 class="text-xl font-bold text-brand-dark mb-4">お支払い方法</h2>
+      <div class="flex flex-wrap gap-3">
+        {
+          ["現金", "クレジットカード（VISA/Mastercard/JCB）", "PayPay", "銀行振込"].map((method) => (
+            <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm">
+              {method}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="text-center bg-brand-primary text-white rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-2">無料見積もりのご依頼</h2>
+      <p class="text-blue-200 mb-6">まずはお気軽にご連絡ください。見積もりは無料です。</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで相談する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

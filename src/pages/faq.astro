@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/seo/Breadcrumb.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import { FAQ_ITEMS } from "../data/faq";
+import { COMPANY } from "../data/company";
+
+// FAQPage JSON-LD（全件）
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+const categories = [
+  { id: "junk", label: "不用品回収" },
+  { id: "cleaning", label: "ハウスクリーニング" },
+  { id: "price", label: "料金・支払い" },
+  { id: "general", label: "共通" },
+] as const;
+---
+
+<BaseLayout
+  title="よくある質問"
+  description={`${COMPANY.name}へのよくある質問をまとめました。不用品回収・ハウスクリーニングに関するご質問はこちらをご確認ください。`}
+  schema={faqSchema}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "よくある質問", href: "/faq/" }]} />
+
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">よくある質問</h1>
+    <p class="text-gray-600 mb-10">
+      お客様からよくいただくご質問をまとめました。<br />
+      解決しない場合はお気軽にお問い合わせください。
+    </p>
+
+    {
+      categories.map((cat) => {
+        const items = FAQ_ITEMS.filter((f) => f.category === cat.id);
+        return (
+          <section class="mb-10">
+            <h2 class="text-xl font-bold text-brand-dark mb-4 flex items-center gap-2">
+              <span class="w-1 h-6 bg-brand-accent rounded-full inline-block" />
+              {cat.label}
+            </h2>
+            <FAQ category={cat.id} />
+          </section>
+        );
+      })
+    }
+
+    <!-- 解決しない場合 -->
+    <div class="bg-brand-secondary rounded-2xl p-8 text-center">
+      <h2 class="text-xl font-bold text-brand-dark mb-2">質問が解決しない場合</h2>
+      <p class="text-gray-600 mb-6">お気軽にお問い合わせください。丁寧にご回答します。</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-brand-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-900 transition-colors">
+          {COMPANY.tel} に電話する
+        </a>
+        <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors">
+          メールで質問する
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

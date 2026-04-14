@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* ブランドカラー */
+  --color-brand-primary: #1e3a5f;    /* ネイビー（信頼・プロフェッショナル） */
+  --color-brand-secondary: #e8f4f8;  /* ライトブルー（清潔感） */
+  --color-brand-accent: #f97316;     /* オレンジ（CTA・行動促進） */
+  --color-brand-dark: #1a1a2e;       /* 濃紺（テキスト） */
+
+  /* フォント */
+  --font-sans: "Noto Sans JP", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-brand-dark);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+  }
+}

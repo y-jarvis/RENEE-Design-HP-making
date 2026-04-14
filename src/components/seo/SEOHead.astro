@@ -1,0 +1,58 @@
+---
+import { COMPANY } from "../../data/company";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = COMPANY.description,
+  canonical,
+  ogImage = COMPANY.ogImage,
+  noIndex = false,
+} = Astro.props;
+
+const fullTitle = title === COMPANY.name ? title : `${title} | ${COMPANY.name}`;
+const canonicalUrl = canonical ?? Astro.url.href;
+const ogImageUrl = new URL(ogImage, COMPANY.siteUrl).toString();
+---
+
+<!-- 基本メタ -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- OGP -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:site_name" content={COMPANY.name} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- ファビコン -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.ico" />
+
+<!-- フォント（Noto Sans JP） -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>

@@ -1,0 +1,63 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "お問い合わせ",
+    description: "電話・メールでお気軽にご連絡ください。内容をヒアリングし、概算費用をお伝えします。",
+  },
+  {
+    number: "02",
+    title: "無料お見積もり",
+    description: "ご希望に応じて現地へお伺いし、正確なお見積もりをご提示します。費用に納得いただいてから作業開始です。",
+  },
+  {
+    number: "03",
+    title: "作業実施",
+    description: "ご指定の日時に伺い、丁寧・迅速に作業を行います。後片付けまで責任を持って対応します。",
+  },
+  {
+    number: "04",
+    title: "お支払い・完了",
+    description: "作業完了後にお支払いいただきます。現金・カード・PayPayなど各種対応しています。",
+  },
+];
+---
+
+<section class="py-16 bg-brand-secondary">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand-dark">ご利用の流れ</h2>
+      <p class="mt-2 text-gray-600">お問い合わせから作業完了まで、わかりやすく進めます</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {
+        steps.map((step, index) => (
+          <div class="relative bg-white rounded-xl p-6 shadow-sm">
+            {/* 矢印（最後以外） */}
+            {index < steps.length - 1 && (
+              <div class="hidden md:block absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-brand-accent text-xl font-bold">
+                →
+              </div>
+            )}
+            <div class="text-4xl font-black text-brand-accent/20 mb-2">{step.number}</div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-8">
+      <a
+        href="/flow/"
+        class="inline-flex items-center gap-2 text-brand-primary font-bold hover:text-brand-accent transition-colors"
+      >
+        詳しい流れを見る
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import FlowSteps from "../components/sections/FlowSteps.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import GoogleMap from "../components/sections/GoogleMap.astro";
+import { SERVICES } from "../data/services";
+import { COMPANY } from "../data/company";
+---
+
+<BaseLayout
+  title={COMPANY.name}
+  description="不用品回収・ハウスクリーニングのルネデザイン。最短即日対応・お見積もり無料。丁寧な作業と明確な料金でご安心ください。"
+>
+  <!-- ヒーロー -->
+  <Hero />
+
+  <!-- 選ばれる理由 -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-dark">
+          {COMPANY.name}が選ばれる理由
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          [
+            { icon: "⚡", title: "最短即日対応", body: "お急ぎの場合もご連絡ください。スケジュール調整して最速でお伺いします。" },
+            { icon: "💰", title: "明確な料金", body: "追加費用なし。お見積もり後の変更は事前にご説明・ご確認します。" },
+            { icon: "🏆", title: "適切な許認可", body: "古物商許可・廃棄物収集運搬業許可を取得。適正処理を行います。" },
+            { icon: "📅", title: "年中無休", body: "土日祝日も営業。8:00〜20:00の間でご都合の良い時間にお伺いします。" },
+          ].map((reason) => (
+            <div class="text-center bg-brand-secondary rounded-xl p-6">
+              <div class="text-4xl mb-3">{reason.icon}</div>
+              <h3 class="font-bold text-brand-dark mb-2">{reason.title}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{reason.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-dark">サービス</h2>
+        <p class="mt-2 text-gray-600">不用品回収からハウスクリーニングまで一貫対応</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          SERVICES.map((service) => (
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div class="bg-brand-primary h-3" />
+              <div class="p-8">
+                <h3 class="text-xl font-bold text-brand-dark mb-1">{service.title}</h3>
+                <p class="text-sm text-gray-500 mb-3">{service.subtitle}</p>
+                <p class="text-gray-700 leading-relaxed mb-5">{service.description}</p>
+                <ul class="space-y-2 mb-6">
+                  {service.features.map((f) => (
+                    <li class="flex items-center gap-2 text-sm text-gray-700">
+                      <span class="text-brand-accent font-bold">✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={service.href}
+                  class="inline-flex items-center gap-1 text-brand-primary font-bold hover:text-brand-accent transition-colors"
+                >
+                  詳しく見る
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ご利用の流れ -->
+  <FlowSteps />
+
+  <!-- FAQ（トップは6件のみ） -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-dark">よくある質問</h2>
+      </div>
+      <FAQ limit={6} />
+      <div class="text-center mt-8">
+        <a
+          href="/faq/"
+          class="inline-flex items-center gap-2 text-brand-primary font-bold hover:text-brand-accent transition-colors"
+        >
+          すべての質問を見る
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス・地図 -->
+  <GoogleMap />
+</BaseLayout>
