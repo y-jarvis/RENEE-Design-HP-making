@@ -8,7 +8,7 @@ const blog = defineCollection({
     description: z.string(),
     publishDate: z.date(),
     updatedDate: z.date().optional(),
-    author: z.string().default("ルネデザイン編集部"),
+    author: z.string().default("RENEE Design 編集部"),
     category: z.string(),
     tags: z.array(z.string()).default([]),
   }),
