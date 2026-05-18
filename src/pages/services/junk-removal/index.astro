@@ -4,16 +4,69 @@ import Breadcrumb from "../../../components/seo/Breadcrumb.astro";
 import FAQ from "../../../components/sections/FAQ.astro";
 import CTABanner from "../../../components/sections/CTABanner.astro";
 import { COMPANY } from "../../../data/company";
+
+const LP_SERVICES = [
+  {
+    icon: "🚛",
+    title: "不用品回収（一般）",
+    subtitle: "一点〜お部屋まるごとまで",
+    features: ["最短即日対応", "家具・家電・雑貨なんでもOK", "お見積もり無料"],
+    href: "https://www.tokumarushokai.com/lp/",
+  },
+  {
+    icon: "🏠",
+    title: "遺品整理・生前整理",
+    subtitle: "仕分けから清掃まで一貫対応",
+    features: ["買取で費用を相殺", "立会い不要プランあり", "供養の手配も相談可"],
+    href: "https://www.tokumarushokai.com/ihin/estate/",
+  },
+  {
+    icon: "📦",
+    title: "引越し不用品回収",
+    subtitle: "引越し前後の不用品を一括回収",
+    features: ["大型家電・家具もOK", "引越し業者と同日対応可", "搬出まで全部お任せ"],
+    href: "https://www.tokumarushokai.com/ihin/moving/",
+  },
+  {
+    icon: "🧊",
+    title: "冷蔵庫・洗濯機の買取",
+    subtitle: "出張査定で費用を削減",
+    features: ["出張査定・即日現金払い", "回収費用と相殺可能", "メーカー問わず対応"],
+    href: "https://www.tokumarushokai.com/ihin/appliance/",
+  },
+  {
+    icon: "💍",
+    title: "ブランド品・貴金属の買取",
+    subtitle: "その場で査定・現金払い",
+    features: ["ブランドバッグ・時計・貴金属", "金・銀・プラチナ対応", "まとめて査定OK"],
+    href: "https://www.tokumarushokai.com/ihin/brand/",
+  },
+  {
+    icon: "❄️",
+    title: "エアコンの取外し・買取",
+    subtitle: "取外し工事から買取まで",
+    features: ["引越し時の取外しも対応", "動作品は買取で費用相殺", "処分のみも可"],
+    href: "https://www.tokumarushokai.com/ihin/aircon/",
+  },
+];
+
+const USE_CASES = [
+  "引越し前の急な片付け",
+  "実家・親の家の整理",
+  "遺品・生前整理",
+  "大型家具・家電の処分",
+  "ゴミ屋敷・大量片付け",
+  "店舗・事務所の閉店整理",
+];
 ---
 
 <BaseLayout
   title="不用品回収"
-  description={`${COMPANY.name}の不用品回収サービス。家具・家電・引越しゴミなど一点から部屋丸ごとまで最短即日対応。お見積もり無料。`}
+  description={`${COMPANY.name}の不用品回収サービス。家具・家電・引越しゴミなど一点から部屋丸ごとまで最短即日対応。遺品整理・引越し不用品・家電買取にも対応。お見積もり無料。`}
 >
   <!-- ページヘッダー -->
   <div class="bg-[#0F2952] text-white overflow-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[400px]">
-      <!-- 左：テキスト -->
       <div class="lg:col-span-7 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-20">
         <Breadcrumb
           items={[
@@ -28,7 +81,6 @@ import { COMPANY } from "../../../data/company";
           最短即日でお伺いし、分別・搬出まで一括でお任せください。
         </p>
       </div>
-      <!-- 右：写真 (PC のみ) -->
       <div class="lg:col-span-5 relative hidden lg:block">
         <img
           src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop"
@@ -44,7 +96,47 @@ import { COMPANY } from "../../../data/company";
 
   <div class="max-w-5xl mx-auto px-4 py-12">
 
-    <!-- 特長 -->
+    <!-- サービスメニュー -->
+    <section class="mb-14">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-brand-dark mb-2">サービスメニュー</h2>
+        <p class="text-gray-500 text-sm">お困りの内容に合わせてお選びください。詳細ページへご案内します。</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          LP_SERVICES.map((service) => (
+            <a
+              href={service.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col border border-gray-200 rounded-xl p-6 hover:border-brand-primary hover:shadow-md transition-all bg-white"
+            >
+              <div class="text-3xl mb-3">{service.icon}</div>
+              <h3 class="text-base font-bold text-brand-dark mb-1 group-hover:text-brand-primary transition-colors">
+                {service.title}
+              </h3>
+              <p class="text-xs text-gray-500 mb-4">{service.subtitle}</p>
+              <ul class="space-y-1.5 mb-5 flex-1">
+                {service.features.map((f) => (
+                  <li class="flex items-start gap-2 text-sm text-gray-600">
+                    <span class="text-brand-accent font-bold mt-0.5 shrink-0">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <span class="flex items-center gap-1 text-sm font-bold text-brand-primary mt-auto">
+                詳しく見る
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- サービスの特長 -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold text-brand-dark mb-6">サービスの特長</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -65,7 +157,7 @@ import { COMPANY } from "../../../data/company";
       </div>
     </section>
 
-    <!-- 対応品目 -->
+    <!-- 主な対応品目 -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold text-brand-dark mb-6">主な対応品目</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -82,6 +174,21 @@ import { COMPANY } from "../../../data/company";
         }
       </div>
       <p class="mt-3 text-sm text-gray-500">※ 上記以外もお気軽にご相談ください</p>
+    </section>
+
+    <!-- こんなケースに対応します -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">こんなケースに対応します</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {
+          USE_CASES.map((c) => (
+            <div class="flex items-center gap-2 bg-brand-secondary rounded-lg px-4 py-3 text-sm font-medium text-brand-dark">
+              <span class="text-brand-accent font-black shrink-0">—</span>
+              {c}
+            </div>
+          ))
+        }
+      </div>
     </section>
 
     <!-- FAQ -->
