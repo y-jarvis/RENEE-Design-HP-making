@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import CTABanner from "../../components/sections/CTABanner.astro";
+import { getCollection } from "astro:content";
+import { COMPANY } from "../../data/company";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+// カテゴリー一覧（重複排除）
+const categories = ["すべて", ...Array.from(new Set(posts.map((p) => p.data.category)))];
+
+const featuredPost = posts[0];
+const restPosts = posts.slice(1);
+---
+
+<BaseLayout
+  title="お役立ち情報"
+  description={`${COMPANY.name}のお役立ち情報。不用品の処分方法・ハウスクリーニングのコツなど、快適な生活に役立つ情報をお届けします。`}
+>
+
+  <!-- ページヘッダー -->
+  <div class="bg-[#0F2952] text-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 py-16 md:py-20">
+      <Breadcrumb items={[{ name: "お役立ち情報", href: "/blog/" }]} />
+      <p class="text-xs font-semibold text-brand-accent uppercase tracking-[0.25em] mt-6 mb-3">Blog</p>
+      <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight">お役立ち情報</h1>
+      <p class="text-white/70 text-base">
+        不用品の処分方法・ハウスクリーニングのコツなど、役立つ情報をお届けします。
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-8 py-16 md:py-24">
+
+    <!-- カテゴリーフィルター -->
+    <div class="flex flex-wrap gap-2 mb-10" id="category-filter">
+      {categories.map((cat) => (
+        <button
+          data-category={cat}
+          class={`text-sm px-4 py-2 rounded-md border transition-colors cursor-pointer ${
+            cat === "すべて"
+              ? "bg-[#0F2952] text-white border-[#0F2952]"
+              : "bg-white text-gray-600 border-gray-200 hover:border-brand-primary hover:text-brand-primary"
+          }`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- 注目記事（最新1件） -->
+    {featuredPost && (
+      <a
+        href={`/blog/${featuredPost.id}/`}
+        class="group block bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all mb-10 cursor-pointer"
+        data-post-category={featuredPost.data.category}
+      >
+        <div class="grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-7 p-8 flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-xs bg-[#0F2952] text-white font-bold px-3 py-1 rounded">
+                {featuredPost.data.category}
+              </span>
+              <span class="text-xs text-gray-400 font-medium">最新記事</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-bold text-brand-dark group-hover:text-brand-primary transition-colors leading-snug mb-3">
+              {featuredPost.data.title}
+            </h2>
+            <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-4">
+              {featuredPost.data.description}
+            </p>
+            <time datetime={featuredPost.data.publishDate.toISOString()} class="text-xs text-gray-400">
+              {featuredPost.data.publishDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+          </div>
+          <div class="md:col-span-5 bg-gray-100 flex items-center justify-center p-8 border-l border-gray-100">
+            <div class="text-center">
+              <p class="text-5xl font-black text-gray-200 leading-none mb-2">
+                {featuredPost.data.category.slice(0, 2)}
+              </p>
+              <p class="text-xs text-gray-400">{featuredPost.data.category}</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    )}
+
+    <!-- 記事グリッド -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="post-grid">
+      {restPosts.map((post) => (
+        <a
+          href={`/blog/${post.id}/`}
+          class="group bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all cursor-pointer"
+          data-post-category={post.data.category}
+        >
+          <div class="p-6">
+            <span class="inline-block text-xs bg-gray-50 border border-gray-100 text-gray-500 font-medium px-2 py-1 rounded mb-3">
+              {post.data.category}
+            </span>
+            <h2 class="font-bold text-brand-dark leading-snug mb-2 group-hover:text-brand-primary transition-colors line-clamp-3 text-sm">
+              {post.data.title}
+            </h2>
+            <p class="text-xs text-gray-400 leading-relaxed line-clamp-2 mb-4">{post.data.description}</p>
+            <time
+              datetime={post.data.publishDate.toISOString()}
+              class="text-xs text-gray-300"
+            >
+              {post.data.publishDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+          </div>
+          <div class="px-6 pb-5">
+            <span class="inline-flex items-center gap-1 text-xs font-bold text-brand-primary group-hover:gap-2 transition-all">
+              続きを読む
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- 記事がない場合のメッセージ（JS非対応でも見える） -->
+    <div id="no-posts" class="hidden text-center py-12 text-gray-400 text-sm">
+      該当する記事はありません
+    </div>
+
+  </div>
+</BaseLayout>
+
+<CTABanner />
+
+<script>
+  // カテゴリーフィルター
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>("#category-filter button");
+  const postCards = document.querySelectorAll<HTMLElement>("[data-post-category]");
+  const noPostsMsg = document.getElementById("no-posts");
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.category ?? "すべて";
+
+      // ボタンのスタイル更新
+      filterBtns.forEach((b) => {
+        b.className = "text-sm px-4 py-2 rounded-md border transition-colors cursor-pointer bg-white text-gray-600 border-gray-200 hover:border-brand-primary hover:text-brand-primary";
+      });
+      btn.className = "text-sm px-4 py-2 rounded-md border transition-colors cursor-pointer bg-[#0F2952] text-white border-[#0F2952]";
+
+      // カード表示切替
+      let visible = 0;
+      postCards.forEach((card) => {
+        const matches = cat === "すべて" || card.dataset.postCategory === cat;
+        card.style.display = matches ? "" : "none";
+        if (matches) visible++;
+      });
+
+      if (noPostsMsg) noPostsMsg.classList.toggle("hidden", visible > 0);
+    });
+  });
+</script>

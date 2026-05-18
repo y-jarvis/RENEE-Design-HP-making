@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/seo/Breadcrumb.astro";
+import CTABanner from "../../../components/sections/CTABanner.astro";
+import { SUB_SERVICES } from "../../../data/subservices";
+
+const service = SUB_SERVICES.find((s) => s.slug === "kitchen")!;
+---
+
+<BaseLayout title={service.title} description={service.metaDescription}>
+
+  <div class="bg-[#0F2952] text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[360px]">
+      <div class="lg:col-span-7 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-20">
+        <Breadcrumb
+          items={[
+            { name: "事業内容", href: "/services/" },
+            { name: "ハウスクリーニング", href: "/services/house-cleaning/" },
+            { name: service.title, href: service.href },
+          ]}
+        />
+        <p class="text-xs font-semibold text-brand-accent uppercase tracking-[0.25em] mt-6 mb-3">{service.subtitle}</p>
+        <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight">{service.title}</h1>
+        <p class="text-white/70 text-base md:text-lg max-w-xl leading-relaxed">{service.description}</p>
+      </div>
+      <div class="lg:col-span-5 relative hidden lg:block">
+        <img
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop"
+          alt="キッチンクリーニング作業イメージ"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0F2952] via-[#0F2952]/30 to-transparent"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
+
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Check</p>
+      <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-8">こんな症状、ありませんか？</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          "レンジフードに黄ばんだ油汚れが固まっている",
+          "コンロ周りのこびりつき汚れが落ちない",
+          "シンクの水垢・黒ずみが気になる",
+          "換気扇フィルターが詰まって排気が悪い",
+          "引越し前後で徹底的に清掃したい",
+          "年末の大掃除をプロに任せたい",
+        ].map((item) => (
+          <div class="flex items-start gap-3 bg-gray-50 rounded-lg px-5 py-4">
+            <span class="text-brand-accent font-bold flex-shrink-0 mt-0.5">✓</span>
+            <p class="text-sm text-gray-700">{item}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Work</p>
+      <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-8">洗浄箇所と作業内容</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { area: "レンジフード・換気扇", work: "分解して内部まで業務用溶剤で油汚れを除去" },
+          { area: "コンロ・五徳", work: "こびりつき汚れをアルカリ洗剤で徹底除去" },
+          { area: "IHトップ・グリル", work: "専用クリーナーで焦げ付き・油汚れを洗浄" },
+          { area: "シンク・排水口", work: "水垢・黒ずみ除去、排水口内部を分解洗浄" },
+          { area: "壁面の油汚れ", work: "コンロ周辺タイル・壁の油脂汚れを洗浄" },
+          { area: "扉・引き出し外面", work: "キャビネット外面の手垢・油汚れを除去" },
+        ].map((item) => (
+          <div class="border border-gray-100 rounded-lg p-5">
+            <p class="font-bold text-brand-dark text-sm mb-1">{item.area}</p>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.work}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Price</p>
+      <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-8">料金目安</h2>
+      <div class="border border-gray-100 rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left px-6 py-4 font-bold text-brand-dark">内容</th>
+              <th class="text-right px-6 py-4 font-bold text-brand-dark">料金目安（税込）</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["レンジフードのみ", "¥12,000〜¥18,000"],
+              ["キッチン全体（コンロ・シンク・レンジフード）", "¥20,000〜¥30,000"],
+            ].map(([type, price], i) => (
+              <tr class={`border-b border-gray-100 ${i % 2 === 1 ? "bg-gray-50/50" : ""}`}>
+                <td class="px-6 py-4 text-gray-700">{type}</td>
+                <td class="px-6 py-4 text-right font-bold text-brand-dark">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-gray-400">※ 汚れの程度・設備の種類により変動します。</p>
+    </section>
+
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Related</p>
+      <h2 class="text-2xl font-black text-brand-dark mb-6">関連サービス</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { title: "エアコンクリーニング", href: "/services/house-cleaning/aircon/" },
+          { title: "浴室クリーニング", href: "/services/house-cleaning/bathroom/" },
+          { title: "退去・入居時クリーニング", href: "/services/house-cleaning/moving/" },
+        ].map((rel) => (
+          <a href={rel.href} class="flex items-center justify-between border border-gray-200 rounded-lg px-5 py-4 hover:border-brand-primary hover:text-brand-primary transition-colors text-sm font-medium text-gray-700 cursor-pointer">
+            {rel.title}
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<CTABanner />

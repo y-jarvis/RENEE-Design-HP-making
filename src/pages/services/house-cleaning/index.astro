@@ -1,0 +1,334 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/seo/Breadcrumb.astro";
+import FAQ from "../../../components/sections/FAQ.astro";
+import CTABanner from "../../../components/sections/CTABanner.astro";
+import { COMPANY } from "../../../data/company";
+---
+
+<BaseLayout
+  title="ハウスクリーニング"
+  description={`${COMPANY.name}のハウスクリーニング。入居前後・退去時クリーニングから個人宅まで対応。エアコン・浴室・キッチン等、プロの技術でスッキリ。お見積もり無料。`}
+>
+
+  <!-- ページヘッダー -->
+  <div class="bg-[#0F2952] text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[400px]">
+      <!-- 左：テキスト -->
+      <div class="lg:col-span-7 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-20">
+        <Breadcrumb
+          items={[
+            { name: "事業内容", href: "/services/" },
+            { name: "ハウスクリーニング", href: "/services/house-cleaning/" },
+          ]}
+        />
+        <p class="text-xs font-semibold text-brand-accent uppercase tracking-[0.25em] mt-6 mb-3">House Cleaning</p>
+        <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight">ハウスクリーニング</h1>
+        <p class="text-white/70 text-base md:text-lg max-w-xl leading-relaxed">
+          プロ用機材と専用洗剤で、エアコン・浴室・キッチンなど隅々まで徹底クリーニング。<br />
+          個人のご家庭から、賃貸オーナー様の退去・入居時清掃まで対応します。
+        </p>
+      </div>
+      <!-- 右：写真 (PC のみ) -->
+      <div class="lg:col-span-5 relative hidden lg:block">
+        <img
+          src="https://images.unsplash.com/photo-1527515545081-5db817172677?w=800&q=80&auto=format&fit=crop"
+          alt="プロのハウスクリーニング作業"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0F2952] via-[#0F2952]/30 to-transparent"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-8 py-16">
+
+    <!-- 対象顧客 -->
+    <section class="mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          {
+            label: "個人・ご家庭のお客様",
+            items: ["引越し前後の新居・旧居クリーニング", "エアコン・水回りのスポットクリーニング", "大掃除・定期クリーニング"],
+          },
+          {
+            label: "不動産オーナー・管理会社様",
+            items: ["退去時の原状回復クリーニング", "入居前の室内清掃", "リフォーム後の仕上げクリーニング"],
+          },
+        ].map((c) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-lg p-6">
+            <p class="font-bold text-brand-dark mb-4 text-sm">{c.label}</p>
+            <ul class="space-y-2">
+              {c.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-gray-600">
+                  <span class="text-brand-accent font-bold flex-shrink-0 mt-0.5">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 特長 -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        サービスの特長
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        {[
+          {
+            svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" /></svg>`,
+            title: "業務用機材・専用洗剤使用",
+            body: "高圧洗浄機や専用の洗剤で、市販品では落とせない頑固な汚れも対応します。",
+          },
+          {
+            svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
+            title: "入居前後・退去時も対応",
+            body: "引越し前の新居クリーニングや退去時の原状回復クリーニングも承ります。",
+          },
+          {
+            svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>`,
+            title: "低刺激洗剤オプションあり",
+            body: "お子様・ペット・アレルギーをお持ちの方向けに、低刺激洗剤でのクリーニングも可能。",
+          },
+          {
+            svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" /></svg>`,
+            title: "丁寧な作業報告",
+            body: "作業後にチェックシートでご確認いただきます。ご満足いただけるまで対応します。",
+          },
+        ].map((f) => (
+          <div class="flex gap-4 items-start border border-gray-100 rounded-lg p-5 bg-white">
+            <div class="flex-shrink-0 mt-0.5" set:html={f.svg} />
+            <div>
+              <p class="font-bold text-brand-dark mb-1 text-sm">{f.title}</p>
+              <p class="text-xs text-gray-500 leading-relaxed">{f.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 基本作業内容 -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        基本作業内容
+      </h2>
+      <p class="text-sm text-gray-500 mt-4 mb-6">
+        全室クリーニングプランに含まれる標準作業です。<span class="text-gray-400">※ オプションは別途料金</span>
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
+        {[
+          {
+            area: "キッチン・レンジフード",
+            standard: ["レンジフード（フィルター・ファン）", "コンロ・五徳", "シンク・蛇口", "棚・扉の拭き上げ"],
+            option: ["食器洗い乾燥機内部", "換気扇内部の分解洗浄"],
+          },
+          {
+            area: "浴室・バスルーム",
+            standard: ["天井・壁・床", "浴槽", "換気扇（フィルター）", "扉・サッシ"],
+            option: ["エプロン内部", "鏡のウロコ取り", "追い焚き配管洗浄"],
+          },
+          {
+            area: "トイレ",
+            standard: ["便器（内外）", "タンク外側", "床・壁", "扉・建具"],
+            option: ["タンク内部", "ウォシュレット脱着洗浄"],
+          },
+          {
+            area: "洗面所",
+            standard: ["洗面ボウル・鏡", "蛇口・排水口", "洗濯機置場（周辺）", "床・棚"],
+            option: ["洗濯槽クリーニング"],
+          },
+          {
+            area: "窓・サッシ",
+            standard: ["全窓ガラス（内面）", "サッシ・レール", "網戸"],
+            option: ["窓ガラス外面", "雨戸・シャッター"],
+          },
+          {
+            area: "玄関・ベランダ",
+            standard: ["玄関土間・扉", "シューズボックス外側", "ベランダ床・排水口"],
+            option: ["ベランダ高圧洗浄", "駐車場・外構清掃"],
+          },
+          {
+            area: "建具・収納",
+            standard: ["室内扉・取っ手", "クローゼット・押入れ棚", "照明器具"],
+            option: ["壁紙（クロス）クリーニング", "カーペットクリーニング"],
+          },
+          {
+            area: "床・フローリング",
+            standard: ["全面クリーニング", "隅・巾木の清掃"],
+            option: ["ワックスがけ（有料プランあり）", "フロアコーティング"],
+          },
+        ].map((item) => (
+          <div class="bg-white p-6">
+            <p class="font-bold text-brand-dark text-sm mb-3 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brand-primary flex-shrink-0"></span>
+              {item.area}
+            </p>
+            <div class="mb-3">
+              <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">標準作業</p>
+              <ul class="space-y-0.5">
+                {item.standard.map((s) => (
+                  <li class="text-xs text-gray-600">{s}</li>
+                ))}
+              </ul>
+            </div>
+            {item.option.length > 0 && (
+              <div>
+                <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">オプション</p>
+                <ul class="space-y-0.5">
+                  {item.option.map((o) => (
+                    <li class="text-xs text-gray-400">{o}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 料金目安 -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        料金目安
+      </h2>
+      <p class="text-sm text-gray-500 mt-4 mb-6">
+        全室クリーニング（入居前後・退去時）の料金目安です。間取り・汚れの程度によりお見積もりが変わる場合があります。
+      </p>
+
+      <div class="overflow-x-auto rounded-lg border border-gray-100 mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left px-6 py-4 font-semibold text-gray-600">間取り</th>
+              <th class="text-left px-6 py-4 font-semibold text-gray-600">目安面積</th>
+              <th class="text-right px-6 py-4 font-semibold text-gray-600">料金（税込）</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-50">
+            {[
+              { type: "1R・1K", size: "〜25㎡", price: "¥30,000〜" },
+              { type: "1DK", size: "26〜35㎡", price: "¥40,000〜" },
+              { type: "1LDK", size: "36〜45㎡", price: "¥50,000〜" },
+              { type: "2LDK", size: "46〜60㎡", price: "¥65,000〜" },
+              { type: "3LDK以上・戸建て", size: "61㎡〜", price: "要お見積もり" },
+            ].map((row) => (
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4 font-bold text-brand-dark">{row.type}</td>
+                <td class="px-6 py-4 text-gray-500">{row.size}</td>
+                <td class="px-6 py-4 text-right font-bold text-brand-primary">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-400 leading-relaxed">
+        ※ 上記は参考価格です。現地確認後に正確なお見積もりをご提示します。追加費用が発生する場合は事前にご説明します。
+      </p>
+    </section>
+
+    <!-- ワックスがけ -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        フローリング ワックスがけ
+      </h2>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border-l-4 border-brand-primary bg-white border border-gray-100 rounded-lg p-6">
+          <p class="font-bold text-brand-dark mb-2">全室クリーニングとのセット</p>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            全室クリーニングプランとご一緒にお申し込みの場合、LDK分のワックスがけを割引価格でご提供します。
+            フローリングを保護し、ツヤを取り戻します。
+          </p>
+        </div>
+        <div class="border-l-4 border-gray-200 bg-white border border-gray-100 rounded-lg p-6">
+          <p class="font-bold text-brand-dark mb-2">スポット対応</p>
+          <p class="text-sm text-gray-500 leading-relaxed">
+            ワックスがけのみのご依頼も承ります。退去後のリフレッシュや入居前の仕上げとして
+            ご活用いただけます。詳しくはお見積もりにてご確認ください。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- リフォーム後クリーニング -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        リフォーム後クリーニング
+      </h2>
+      <div class="mt-6 bg-gray-50 rounded-lg p-8 border border-gray-100">
+        <p class="text-gray-600 leading-relaxed mb-6 text-sm">
+          リフォーム工事後は、木屑・石膏ボードのパテ・クロスのりなどの施工残材が残ることがあります。
+          通常のハウスクリーニングとは異なる専門的な清掃が必要です。
+        </p>
+        <ul class="space-y-2">
+          {[
+            "パテ・クロスのりの除去",
+            "養生テープの跡・接着剤の除去",
+            "リフォーム箇所以外（キッチン・浴室・トイレ等）の清掃も一括対応",
+            "新築・フルリノベーション物件にも対応",
+          ].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <span class="text-brand-primary font-bold flex-shrink-0 mt-0.5">—</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 不動産オーナー・法人向け -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        不動産オーナー・管理会社様へ
+      </h2>
+      <div class="mt-6 bg-[#0F2952] text-white rounded-lg p-8">
+        <p class="text-base font-bold mb-4">複数物件のご依頼も歓迎します</p>
+        <p class="text-white/70 text-sm leading-relaxed mb-6">
+          退去時クリーニングを定期的にご依頼いただける不動産オーナー様・管理会社様には、
+          複数件割引をご用意しています。まずはご相談ください。
+        </p>
+        <ul class="space-y-2 mb-8">
+          {[
+            "複数物件の一括対応・継続依頼割引あり",
+            "退去確認後の迅速スケジューリング対応",
+            "作業完了報告書の発行（法人向け）",
+            "見積もり〜請求書の書類対応",
+          ].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-white/80">
+              <span class="text-brand-accent font-bold flex-shrink-0 mt-0.5">—</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 bg-white text-brand-primary font-bold px-6 py-3 rounded-md hover:bg-gray-50 transition-colors text-sm cursor-pointer"
+        >
+          法人・オーナー様のお問い合わせはこちら
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-black text-brand-dark mb-2 pb-3 border-b border-gray-100">
+        よくある質問
+      </h2>
+      <div class="mt-6">
+        <FAQ category="cleaning" />
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
+
+<CTABanner />

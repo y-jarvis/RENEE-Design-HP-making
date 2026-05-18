@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/seo/Breadcrumb.astro";
+import CTABanner from "../../../components/sections/CTABanner.astro";
+import { SUB_SERVICES } from "../../../data/subservices";
+
+const service = SUB_SERVICES.find((s) => s.slug === "estate")!;
+---
+
+<BaseLayout title={service.title} description={service.metaDescription}>
+
+  <div class="bg-[#0F2952] text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[360px]">
+      <div class="lg:col-span-7 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-20">
+        <Breadcrumb
+          items={[
+            { name: "事業内容", href: "/services/" },
+            { name: "不用品回収", href: "/services/junk-removal/" },
+            { name: service.title, href: service.href },
+          ]}
+        />
+        <p class="text-xs font-semibold text-brand-accent uppercase tracking-[0.25em] mt-6 mb-3">{service.subtitle}</p>
+        <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight">{service.title}</h1>
+        <p class="text-white/70 text-base md:text-lg max-w-xl leading-relaxed">{service.description}</p>
+      </div>
+      <div class="lg:col-span-5 relative hidden lg:block">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop"
+          alt="遺品整理・片付けイメージ"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0F2952] via-[#0F2952]/30 to-transparent"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
+
+    <!-- 対応サービス -->
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Service</p>
+      <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-8">対応内容</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          {
+            label: "遺品整理",
+            items: ["故人の家財道具の仕分け・搬出", "形見分けの品を分けての搬出対応", "清掃・原状回復まで一貫対応"],
+          },
+          {
+            label: "生前整理",
+            items: ["自分の意思で残すものを整理", "大型家具・家電の搬出処分", "片付けから清掃まで対応"],
+          },
+        ].map((c) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-lg p-6">
+            <p class="font-bold text-brand-dark mb-4 text-sm">{c.label}</p>
+            <ul class="space-y-2">
+              {c.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-gray-600">
+                  <span class="text-brand-accent font-bold flex-shrink-0 mt-0.5">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 料金目安 -->
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Price</p>
+      <h2 class="text-2xl md:text-3xl font-black text-brand-dark mb-8">料金目安</h2>
+      <div class="border border-gray-100 rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left px-6 py-4 font-bold text-brand-dark">間取り</th>
+              <th class="text-right px-6 py-4 font-bold text-brand-dark">料金目安（税込）</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["1K・1R", "¥50,000〜¥100,000"],
+              ["1LDK・2K", "¥80,000〜¥150,000"],
+              ["2LDK・3K", "¥120,000〜¥200,000"],
+              ["3LDK以上", "別途お見積もり"],
+            ].map(([type, price], i) => (
+              <tr class={`border-b border-gray-100 ${i % 2 === 1 ? "bg-gray-50/50" : ""}`}>
+                <td class="px-6 py-4 text-gray-700">{type}</td>
+                <td class="px-6 py-4 text-right font-bold text-brand-dark">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-gray-400">※ 荷物の量・状態・作業環境により変動します。まずはお見積もりをご依頼ください。</p>
+    </section>
+
+    <section class="mb-16">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-4">Related</p>
+      <h2 class="text-2xl font-black text-brand-dark mb-6">関連サービス</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { title: "引越し不用品回収", href: "/services/junk-removal/moving/" },
+          { title: "不用品回収", href: "/services/junk-removal/" },
+          { title: "退去・入居時クリーニング", href: "/services/house-cleaning/moving/" },
+        ].map((rel) => (
+          <a href={rel.href} class="flex items-center justify-between border border-gray-200 rounded-lg px-5 py-4 hover:border-brand-primary hover:text-brand-primary transition-colors text-sm font-medium text-gray-700 cursor-pointer">
+            {rel.title}
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<CTABanner />

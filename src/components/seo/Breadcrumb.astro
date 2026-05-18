@@ -1,0 +1,50 @@
+---
+import { COMPANY } from "../../data/company";
+
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const allItems = [{ name: "ホーム", href: "/" }, ...items];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: allItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: `${COMPANY.siteUrl}${item.href}`,
+  })),
+};
+---
+
+<nav aria-label="パンくずリスト" class="text-sm text-gray-500 py-3">
+  <ol class="flex flex-wrap gap-1 items-center">
+    {
+      allItems.map((item, index) => (
+        <li class="flex items-center gap-1">
+          {index > 0 && <span aria-hidden="true">/</span>}
+          {index < allItems.length - 1 ? (
+            <a href={item.href} class="hover:text-brand-primary transition-colors">
+              {item.name}
+            </a>
+          ) : (
+            <span class="text-gray-700" aria-current="page">
+              {item.name}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

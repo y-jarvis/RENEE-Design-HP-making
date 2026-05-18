@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /404
+
+# AI クローラー（AIO対策：許可する）
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://renee-design.co.jp/sitemap-index.xml

@@ -1,0 +1,135 @@
+---
+import { COMPANY } from "../../data/company";
+import { NAV_LINKS } from "../../data/navigation";
+
+const year = new Date().getFullYear();
+---
+
+<!-- B-Footer-01: 4カラム全機能フッター + 許認可表記 -->
+<footer class="bg-[#0F2952] text-white">
+
+  <!-- メインフッター -->
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Col1: 会社情報 -->
+      <div class="lg:col-span-1">
+        <a href="/" class="inline-block mb-5">
+          <p class="text-xl font-black tracking-tight">
+            <span class="text-brand-accent">R</span>{COMPANY.name}
+          </p>
+          <p class="text-xs text-white/40 mt-1">{COMPANY.nameEn}</p>
+        </a>
+        <p class="text-white/60 text-xs leading-relaxed mb-5">{COMPANY.tagline}</p>
+        <div class="space-y-2 text-xs text-white/50">
+          <p>〒{COMPANY.address.postalCode}</p>
+          <p>{COMPANY.address.addressRegion}{COMPANY.address.addressLocality}<br />{COMPANY.address.streetAddress}</p>
+          <a href={COMPANY.telHref} class="flex items-center gap-1.5 text-white/80 hover:text-brand-accent transition-colors font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            {COMPANY.tel}
+          </a>
+          <p>{COMPANY.hours}</p>
+        </div>
+      </div>
+
+      <!-- Col2: サービス -->
+      <div>
+        <h3 class="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-5">Services</h3>
+        <ul class="space-y-3 text-sm text-white/60">
+          <li><a href="/services/junk-removal/" class="hover:text-white transition-colors">不用品回収</a></li>
+          <li><a href="/services/junk-removal/estate/" class="hover:text-white transition-colors pl-3 text-xs border-l border-white/10">遺品整理</a></li>
+          <li><a href="/services/junk-removal/moving/" class="hover:text-white transition-colors pl-3 text-xs border-l border-white/10">引越し不用品</a></li>
+          <li><a href="/services/house-cleaning/" class="hover:text-white transition-colors">ハウスクリーニング</a></li>
+          <li><a href="/services/house-cleaning/aircon/" class="hover:text-white transition-colors pl-3 text-xs border-l border-white/10">エアコンクリーニング</a></li>
+          <li><a href="/services/house-cleaning/bathroom/" class="hover:text-white transition-colors pl-3 text-xs border-l border-white/10">浴室クリーニング</a></li>
+          <li><a href="/services/house-cleaning/kitchen/" class="hover:text-white transition-colors pl-3 text-xs border-l border-white/10">キッチンクリーニング</a></li>
+          <li><a href="/price/" class="hover:text-white transition-colors">料金案内</a></li>
+        </ul>
+      </div>
+
+      <!-- Col3: 会社情報 -->
+      <div>
+        <h3 class="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-5">Company</h3>
+        <ul class="space-y-3 text-sm text-white/60">
+          <li><a href="/about/" class="hover:text-white transition-colors">会社概要</a></li>
+          <li><a href="/flow/" class="hover:text-white transition-colors">ご利用の流れ</a></li>
+          <li><a href="/area/" class="hover:text-white transition-colors">対応エリア</a></li>
+          <li><a href="/blog/" class="hover:text-white transition-colors">お役立ち情報</a></li>
+          <li><a href="/faq/" class="hover:text-white transition-colors">よくある質問</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          <li><a href="/privacy/" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+
+      <!-- Col4: お問い合わせ -->
+      <div>
+        <h3 class="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-5">Contact</h3>
+        <a
+          href={COMPANY.telHref}
+          class="flex items-center gap-3 bg-white/10 hover:bg-white/15 border border-white/10 rounded-lg px-4 py-4 mb-3 transition-colors group"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <div>
+            <p class="text-xs text-white/40 mb-0.5">お電話</p>
+            <p class="font-black text-white text-sm tracking-wider group-hover:text-brand-accent transition-colors">{COMPANY.tel}</p>
+          </div>
+        </a>
+        {COMPANY.lineUrl && (
+          <a
+            href={COMPANY.lineUrl}
+            class="flex items-center gap-3 bg-[#06C755]/20 hover:bg-[#06C755]/30 border border-[#06C755]/30 rounded-lg px-4 py-4 mb-3 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#06C755] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            <div>
+              <p class="text-xs text-white/40 mb-0.5">LINE</p>
+              <p class="font-bold text-white text-sm">LINEで相談</p>
+            </div>
+          </a>
+        )}
+        <a
+          href="/contact/"
+          class="flex items-center gap-3 bg-brand-accent/20 hover:bg-brand-accent/30 border border-brand-accent/30 rounded-lg px-4 py-4 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <div>
+            <p class="text-xs text-white/40 mb-0.5">メール・フォーム</p>
+            <p class="font-bold text-white text-sm">無料相談フォーム</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 許認可・コピーライト -->
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- 許認可番号 -->
+        <div class="flex flex-wrap gap-4">
+          {COMPANY.licenses.map((license) => (
+            <span class="text-xs text-white/30 flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              {license}
+            </span>
+          ))}
+        </div>
+        <!-- コピーライト -->
+        <p class="text-xs text-white/30">
+          &copy; {year} {COMPANY.name}. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</footer>

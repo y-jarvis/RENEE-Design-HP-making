@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ========================================
+   RENEE Design — デザイントークン
+   ======================================== */
+
+/* 游ゴシック Windows 対応 */
+@font-face {
+  font-family: AdjustedYuGothic;
+  font-weight: 400;
+  src: local("Yu Gothic Medium"), local("YuGothic-Medium");
+}
+@font-face {
+  font-family: AdjustedYuGothic;
+  font-weight: 700;
+  src: local("Yu Gothic Bold"), local("YuGothic-Bold");
+}
+
+@theme {
+  /* ブランドカラー */
+  --color-brand-primary:   #0077c7;   /* メインブルー — ボタン・アクティブ */
+  --color-brand-secondary: #f8f7f6;   /* ページ背景 */
+  --color-brand-accent:    #ff9900;   /* オレンジ — CTA・強調 */
+  --color-brand-dark:      #23221e;   /* 本文・見出し */
+
+  /* UIトークン */
+  --color-brand-hover:     #005a9e;   /* Primary ボタン hover */
+  --color-brand-link:      #0071c1;   /* テキストリンク */
+  --color-ui-border:       #d6d3d0;   /* 区切り線・入力枠 */
+  --color-ui-muted:        #706d65;   /* 補足テキスト */
+  --color-ui-disabled:     #c1bdb7;   /* 非活性 */
+  --color-ui-stone:        #edebe8;   /* テーブルヘッダー */
+  --color-ui-danger:       #e01e5a;   /* エラー・削除 */
+
+  /* フォント（Noto Sans JP → 游ゴシック → システム）*/
+  --font-sans: "Noto Sans JP", AdjustedYuGothic, "Yu Gothic", YuGothic, "Hiragino Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-brand-dark);
+    background-color: var(--color-brand-secondary);
+    line-height: 1.75;          /* 日本語推奨: 1.75〜1.9 */
+    overflow-wrap: break-word;
+    font-feature-settings: "palt";  /* プロポーショナル約物 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  h4, h5, h6 {
+    line-height: 1.5;
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--color-brand-link);
+  }
+
+  /* 約物詰め */
+  p, li {
+    hanging-punctuation: first last;
+  }
+}
+
+/* ========================================
+   スクロールアニメーション
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* data-animate 属性を持つ要素は初期状態で非表示 */
+[data-animate] {
+  opacity: 0;
+}
+
+/* JS で .is-visible クラスが付いたら再生 */
+[data-animate].is-visible {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 遅延バリアント */
+[data-animate][data-delay="100"].is-visible { animation-delay: 0.1s; }
+[data-animate][data-delay="200"].is-visible { animation-delay: 0.2s; }
+[data-animate][data-delay="300"].is-visible { animation-delay: 0.3s; }
+[data-animate][data-delay="400"].is-visible { animation-delay: 0.4s; }
+[data-animate][data-delay="500"].is-visible { animation-delay: 0.5s; }

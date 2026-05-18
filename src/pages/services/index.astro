@@ -1,0 +1,221 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/seo/Breadcrumb.astro";
+import CTABanner from "../../components/sections/CTABanner.astro";
+import { COMPANY } from "../../data/company";
+---
+
+<BaseLayout
+  title="事業内容"
+  description={`${COMPANY.name}の事業内容。不用品回収・ハウスクリーニングの2事業をご提供しています。最短即日対応・お見積もり無料。`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "事業内容", href: "/services/" }]} />
+
+    <div class="text-center mb-14">
+      <p class="text-brand-accent font-bold text-sm uppercase tracking-widest mb-3">Services</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">事業内容</h1>
+      <p class="text-gray-600 max-w-xl mx-auto leading-relaxed">
+        不用品回収・ハウスクリーニングの2事業を軸に、お客様の生活環境づくりをサポートしています。
+        いずれのサービスも、お見積もり無料・年中無休でご対応いたします。
+      </p>
+    </div>
+
+    <!-- ===== 事業①: 不用品回収 ===== -->
+    <section id="junk-removal" class="mb-20 scroll-mt-24">
+      <!-- セクションヘッダー -->
+      <div class="bg-brand-primary text-white rounded-lg p-8 mb-8">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-white/70 text-sm font-medium mb-1">事業①</p>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">不用品回収</h2>
+            <p class="text-white/80 text-base leading-relaxed">
+              家具・家電・引越しゴミなど、一点から部屋まるごとまで対応。<br class="hidden md:block"/>
+              分別・梱包・搬出まで一括でお任せいただけます。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- サービスの特長 -->
+      <h3 class="text-xl font-bold text-brand-dark mb-4">サービスの特長</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        {
+          [
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+              title: "最短即日対応",
+              body: "お電話いただいた当日〜翌日の対応が可能。急なお引越しや大掃除にも対応します。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>`,
+              title: "一点〜部屋丸ごとまで",
+              body: "ソファ一点でも、部屋まるごとの片付けでも対応。量に関係なくご相談ください。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>`,
+              title: "搬出まで一括対応",
+              body: "分別・梱包・搬出まですべて対応。お客様はご立ち合いだけでOKです。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>`,
+              title: "適正処理・リサイクル",
+              body: "家電リサイクル法に基づく適正処理。状態の良いものはリサイクルし環境にも配慮。",
+            },
+          ].map((f) => (
+            <div class="bg-brand-secondary rounded-md p-5 flex gap-4 items-start">
+              <div class="flex-shrink-0 mt-0.5" set:html={f.svg} />
+              <div>
+                <h4 class="font-bold text-brand-dark mb-1">{f.title}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{f.body}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- 主な対応品目 -->
+      <h3 class="text-xl font-bold text-brand-dark mb-4">主な対応品目</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+        {
+          [
+            "ソファ・椅子", "ベッド・マットレス", "タンス・棚", "テレビ・モニター",
+            "冷蔵庫・洗濯機", "電子レンジ", "パソコン・PC", "自転車・バイク",
+            "本・雑誌", "衣類・布団", "食器・雑貨", "引越し荷物まとめて",
+          ].map((item) => (
+            <div class="bg-white border border-ui-border rounded-lg px-3 py-2 text-sm text-center text-gray-700">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-sm text-gray-500 mb-8">※ 上記以外もお気軽にご相談ください</p>
+
+      <!-- CTA -->
+      <div class="bg-brand-secondary border border-ui-border rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <p class="font-bold text-brand-dark">不用品回収のご相談・お見積もり</p>
+          <p class="text-sm text-gray-600 mt-1">お見積もり無料・{COMPANY.hours}</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+          <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-brand-primary text-white font-bold px-5 py-2.5 rounded-md hover:bg-brand-hover transition-colors text-sm">
+            電話で相談する
+          </a>
+          <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-5 py-2.5 rounded-md hover:bg-orange-600 transition-colors text-sm">
+            メールで相談する
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 区切り線 -->
+    <div class="border-t border-ui-border mb-20"></div>
+
+    <!-- ===== 事業②: ハウスクリーニング ===== -->
+    <section id="house-cleaning" class="mb-20 scroll-mt-24">
+      <!-- セクションヘッダー -->
+      <div class="bg-brand-primary text-white rounded-lg p-8 mb-8">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-white/70 text-sm font-medium mb-1">事業②</p>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">ハウスクリーニング</h2>
+            <p class="text-white/80 text-base leading-relaxed">
+              プロ用機材と専用洗剤で、エアコン・浴室・キッチンなど隅々まで徹底クリーニング。<br class="hidden md:block"/>
+              入居前後の清掃・退去時の原状回復にも対応します。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- サービスの特長 -->
+      <h3 class="text-xl font-bold text-brand-dark mb-4">サービスの特長</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        {
+          [
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" /></svg>`,
+              title: "プロ用機材使用",
+              body: "業務用高圧洗浄機・専用洗剤を使用。市販品では落とせない頑固な汚れも対応します。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
+              title: "入居前後も対応",
+              body: "引越し前の新居クリーニングや退去時の原状回復クリーニングも承ります。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>`,
+              title: "安全な洗剤",
+              body: "お子様・ペット・アレルギーをお持ちの方向けに、低刺激洗剤オプションをご用意。",
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" /></svg>`,
+              title: "丁寧な完了報告",
+              body: "作業後にチェックシートでご確認いただきます。仕上がりにご満足いただけるまで対応します。",
+            },
+          ].map((f) => (
+            <div class="bg-brand-secondary rounded-md p-5 flex gap-4 items-start">
+              <div class="flex-shrink-0 mt-0.5" set:html={f.svg} />
+              <div>
+                <h4 class="font-bold text-brand-dark mb-1">{f.title}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{f.body}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- クリーニングメニュー -->
+      <h3 class="text-xl font-bold text-brand-dark mb-4">クリーニングメニュー</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-3">
+        {
+          [
+            { name: "エアコン", note: "フィルター〜内部まで" },
+            { name: "浴室・バスルーム", note: "カビ・水垢対応" },
+            { name: "キッチン・レンジフード", note: "油汚れ完全除去" },
+            { name: "トイレ", note: "便器・壁・床" },
+            { name: "洗面所", note: "鏡・蛇口の水垢も" },
+            { name: "窓・サッシ", note: "内外両面対応" },
+            { name: "フローリング", note: "ワックスがけも可" },
+            { name: "換気扇", note: "油汚れ徹底除去" },
+            { name: "建物全体（まるごと）", note: "退去・入居前清掃" },
+          ].map((menu) => (
+            <div class="bg-white border border-ui-border rounded-md p-4">
+              <p class="font-bold text-brand-dark text-sm">{menu.name}</p>
+              <p class="text-xs text-gray-500 mt-1">{menu.note}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-sm text-gray-500 mb-8">※ 上記以外の箇所もご相談ください</p>
+
+      <!-- CTA -->
+      <div class="bg-brand-secondary border border-ui-border rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <p class="font-bold text-brand-dark">ハウスクリーニングのご相談・お見積もり</p>
+          <p class="text-sm text-gray-600 mt-1">お見積もり無料・{COMPANY.hours}</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+          <a href={COMPANY.telHref} class="flex items-center justify-center gap-2 bg-brand-primary text-white font-bold px-5 py-2.5 rounded-md hover:bg-brand-hover transition-colors text-sm">
+            電話で相談する
+          </a>
+          <a href="/contact/" class="flex items-center justify-center gap-2 bg-brand-accent text-white font-bold px-5 py-2.5 rounded-md hover:bg-orange-600 transition-colors text-sm">
+            メールで相談する
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</BaseLayout>
+
+<CTABanner />
