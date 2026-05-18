@@ -3,9 +3,25 @@ import { COMPANY } from "../../data/company";
 import { NAV_LINKS } from "../../data/navigation";
 
 const currentPath = Astro.url.pathname;
+
+const junkLinks = [
+  { label: "不用品回収（全般）", href: "https://www.tokumarushokai.com/lp/", external: true },
+  { label: "遺品整理・生前整理", href: "https://www.tokumarushokai.com/ihin/estate/", external: true },
+  { label: "引越し不用品回収", href: "https://www.tokumarushokai.com/ihin/moving/", external: true },
+  { label: "冷蔵庫・洗濯機の買取", href: "https://www.tokumarushokai.com/ihin/appliance/", external: true },
+  { label: "ブランド品・貴金属の買取", href: "https://www.tokumarushokai.com/ihin/brand/", external: true },
+  { label: "エアコンの取外し・買取", href: "https://www.tokumarushokai.com/ihin/aircon/", external: true },
+];
+
+const cleaningLinks = [
+  { label: "エアコンクリーニング", href: "/services/house-cleaning/aircon/" },
+  { label: "浴室クリーニング", href: "/services/house-cleaning/bathroom/" },
+  { label: "キッチン・レンジフードクリーニング", href: "/services/house-cleaning/kitchen/" },
+  { label: "退去・入居時クリーニング", href: "/services/house-cleaning/moving/" },
+];
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-100 relative">
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- ロゴ -->
@@ -16,18 +32,39 @@ const currentPath = Astro.url.pathname;
       <!-- PC ナビゲーション -->
       <nav class="hidden lg:flex items-center gap-6" aria-label="グローバルナビゲーション">
         {
-          NAV_LINKS.filter((l) => l.label !== "お問い合わせ").map((link) => (
-            <a
-              href={link.href}
-              class={`text-sm font-medium transition-colors hover:text-brand-accent ${
-                currentPath.startsWith(link.href) && link.href !== "/"
-                  ? "text-brand-accent"
-                  : "text-brand-dark"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))
+          NAV_LINKS.filter((l) => l.label !== "お問い合わせ").map((link) => {
+            if (link.label === "事業内容") {
+              return (
+                <div class="relative" id="mega-menu-wrapper">
+                  <button
+                    id="mega-menu-btn"
+                    class={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-accent ${
+                      currentPath.startsWith("/services/") ? "text-brand-accent" : "text-brand-dark"
+                    }`}
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    事業内容
+                    <svg id="mega-menu-chevron" class="w-3.5 h-3.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              );
+            }
+            return (
+              <a
+                href={link.href}
+                class={`text-sm font-medium transition-colors hover:text-brand-accent ${
+                  currentPath.startsWith(link.href) && link.href !== "/"
+                    ? "text-brand-accent"
+                    : "text-brand-dark"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })
         }
       </nav>
 
@@ -65,22 +102,122 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 
+  <!-- PC メガメニューパネル -->
+  <div id="mega-menu" class="hidden absolute left-0 right-0 top-full bg-white border-t border-gray-100 shadow-xl z-40">
+    <div class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-2 gap-8">
+
+      <!-- 左列: 不用品回収 -->
+      <div>
+        <a href="/services/junk-removal/" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 hover:text-brand-primary transition-colors">
+          不用品回収
+        </a>
+        <ul class="space-y-1">
+          {junkLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 text-sm text-gray-700 hover:text-brand-primary transition-colors py-1"
+              >
+                {link.label}
+                <span class="text-[10px] text-gray-400">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/services/junk-removal/" class="inline-block mt-4 text-xs text-brand-primary font-medium hover:underline">
+          サービス一覧を見る →
+        </a>
+      </div>
+
+      <!-- 右列: ハウスクリーニング -->
+      <div class="border-l border-gray-100 pl-8">
+        <a href="/services/house-cleaning/" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 hover:text-brand-primary transition-colors">
+          ハウスクリーニング
+        </a>
+        <ul class="space-y-1">
+          {cleaningLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="flex items-center gap-1.5 text-sm text-gray-700 hover:text-brand-primary transition-colors py-1"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/services/house-cleaning/" class="inline-block mt-4 text-xs text-brand-primary font-medium hover:underline">
+          サービス一覧を見る →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
   <!-- スマホ メニュー -->
   <div id="mobile-menu" class="lg:hidden hidden bg-white border-t">
     <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4" aria-label="モバイルナビゲーション">
       {
-        NAV_LINKS.map((link) => (
-          <a
-            href={link.href}
-            class={`text-base font-medium py-1 border-b border-gray-100 transition-colors hover:text-brand-accent ${
-              currentPath.startsWith(link.href) && link.href !== "/"
-                ? "text-brand-accent"
-                : "text-brand-dark"
-            }`}
-          >
-            {link.label}
-          </a>
-        ))
+        NAV_LINKS.map((link) => {
+          if (link.label === "事業内容") {
+            return (
+              <div>
+                <button
+                  id="mobile-services-btn"
+                  class="w-full flex justify-between items-center text-base font-medium py-1 border-b border-gray-100 text-brand-dark hover:text-brand-accent transition-colors"
+                >
+                  事業内容
+                  <svg
+                    id="mobile-services-chevron"
+                    class="w-4 h-4 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div id="mobile-services-submenu" class="hidden pl-4 pt-3 pb-1 flex flex-col gap-1">
+                  <p class="text-xs font-bold text-gray-400 mb-1">不用品回収</p>
+                  {junkLinks.map((l) => (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-1 text-sm text-gray-700 hover:text-brand-primary py-1"
+                    >
+                      {l.label}
+                      <span class="text-[10px] text-gray-400">↗</span>
+                    </a>
+                  ))}
+                  <p class="text-xs font-bold text-gray-400 mt-3 mb-1">ハウスクリーニング</p>
+                  {cleaningLinks.map((l) => (
+                    <a
+                      href={l.href}
+                      class="text-sm text-gray-700 hover:text-brand-primary py-1 block"
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+          return (
+            <a
+              href={link.href}
+              class={`text-base font-medium py-1 border-b border-gray-100 transition-colors hover:text-brand-accent ${
+                currentPath.startsWith(link.href) && link.href !== "/"
+                  ? "text-brand-accent"
+                  : "text-brand-dark"
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
       }
       <a
         href={COMPANY.telHref}
@@ -96,6 +233,7 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  // ハンバーガーメニュー
   const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
   const iconOpen = document.getElementById("icon-open");
@@ -106,5 +244,43 @@ const currentPath = Astro.url.pathname;
     btn.setAttribute("aria-expanded", String(isOpen));
     iconOpen?.classList.toggle("hidden", isOpen);
     iconClose?.classList.toggle("hidden", !isOpen);
+  });
+
+  // PC メガメニュー
+  const megaBtn = document.getElementById("mega-menu-btn");
+  const megaMenu = document.getElementById("mega-menu");
+  const megaChevron = document.getElementById("mega-menu-chevron");
+
+  megaBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = megaMenu?.classList.toggle("hidden") === false;
+    megaBtn.setAttribute("aria-expanded", String(isOpen));
+    megaChevron?.classList.toggle("rotate-180", isOpen);
+  });
+
+  document.addEventListener("click", () => {
+    if (!megaMenu?.classList.contains("hidden")) {
+      megaMenu?.classList.add("hidden");
+      megaBtn?.setAttribute("aria-expanded", "false");
+      megaChevron?.classList.remove("rotate-180");
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      megaMenu?.classList.add("hidden");
+      megaBtn?.setAttribute("aria-expanded", "false");
+      megaChevron?.classList.remove("rotate-180");
+    }
+  });
+
+  // モバイル：事業内容アコーディオン
+  const mobileServicesBtn = document.getElementById("mobile-services-btn");
+  const mobileServicesSubmenu = document.getElementById("mobile-services-submenu");
+  const mobileServicesChevron = document.getElementById("mobile-services-chevron");
+
+  mobileServicesBtn?.addEventListener("click", () => {
+    const isOpen = mobileServicesSubmenu?.classList.toggle("hidden") === false;
+    mobileServicesChevron?.classList.toggle("rotate-180", isOpen);
   });
 </script>
