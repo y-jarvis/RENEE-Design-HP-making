@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumb from "../components/seo/Breadcrumb.astro";
 import CTABanner from "../components/sections/CTABanner.astro";
 import { COMPANY } from "../data/company";
+import { JUNK_REMOVAL_PLANS, JUNK_REMOVAL_PRICE_NOTE } from "../data/pricing";
 ---
 
 <BaseLayout
@@ -28,21 +29,16 @@ import { COMPANY } from "../data/company";
           <thead>
             <tr class="bg-gray-50 border-b border-gray-100">
               <th class="text-left px-6 py-4 font-semibold text-gray-600">プラン</th>
-              <th class="text-left px-6 py-4 font-semibold text-gray-600">目安量</th>
+              <th class="text-left px-6 py-4 font-semibold text-gray-600">目安</th>
               <th class="text-right px-6 py-4 font-semibold text-gray-600">料金（税込）</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-50">
             {
-              [
-                { plan: "単品回収", volume: "1〜2点（ソファ・洗濯機等）", price: "¥5,000〜" },
-                { plan: "軽トラック1台", volume: "軽量〜中量（押入れ1部屋分程度）", price: "¥15,000〜" },
-                { plan: "2tトラック1台", volume: "中量〜大量（1DK丸ごと程度）", price: "¥35,000〜" },
-                { plan: "大型パック", volume: "大量（2LDK以上）", price: "要見積もり" },
-              ].map((row) => (
+              JUNK_REMOVAL_PLANS.map((row) => (
                 <tr class="hover:bg-gray-50 transition-colors">
                   <td class="px-6 py-4 font-medium text-brand-dark">{row.plan}</td>
-                  <td class="px-6 py-4 text-gray-500">{row.volume}</td>
+                  <td class="px-6 py-4 text-gray-500">{row.guide}</td>
                   <td class="px-6 py-4 text-right font-bold text-brand-primary">{row.price}</td>
                 </tr>
               ))
@@ -51,7 +47,7 @@ import { COMPANY } from "../data/company";
         </table>
       </div>
       <p class="mt-3 text-xs text-gray-400 leading-relaxed">
-        ※ 税込の目安料金です。搬出作業の難易度・距離・品目により変動することがあります。
+        ※ {JUNK_REMOVAL_PRICE_NOTE}
       </p>
     </section>
 

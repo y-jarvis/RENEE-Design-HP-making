@@ -31,11 +31,14 @@ import { COMPANY } from "../data/company";
       <dl class="divide-y divide-gray-200 border border-gray-200 rounded-md overflow-hidden">
         {
           [
-            { label: "会社名", value: COMPANY.name },
+            { label: "会社名", value: COMPANY.legalName },
+            { label: "代表者", value: COMPANY.representative },
             { label: "所在地", value: `〒${COMPANY.address.postalCode} ${COMPANY.address.addressRegion}${COMPANY.address.addressLocality}${COMPANY.address.streetAddress}` },
             { label: "電話番号", value: COMPANY.tel },
             { label: "メールアドレス", value: COMPANY.email },
             { label: "営業時間", value: COMPANY.hours },
+            { label: "事業内容", value: "不用品回収・遺品整理・ハウスクリーニング・古物の買取" },
+            { label: "運営サービス", value: [`${COMPANY.name}`, ...COMPANY.brands.map((b) => b.name)].join("・") },
             { label: "対応エリア", value: COMPANY.areaServed.join("・") },
           ].map((row) => (
             <div class="grid grid-cols-3 gap-4 px-6 py-4 bg-white even:bg-[#f8f7f6]">
@@ -45,6 +48,25 @@ import { COMPANY } from "../data/company";
           ))
         }
       </dl>
+    </section>
+
+    <!-- 運営サービス -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-brand-dark mb-4">運営サービス</h2>
+      <div class="space-y-4">
+        {
+          COMPANY.brands.map((brand) => (
+            <div class="border border-gray-200 rounded-md p-6 bg-white">
+              <p class="text-xs font-bold text-brand-accent mb-1">{brand.summary}</p>
+              <h3 class="text-lg font-bold text-brand-dark mb-3">{brand.name}</h3>
+              <p class="text-gray-700 text-sm leading-relaxed mb-4">{brand.description}</p>
+              <a href={brand.url} class="text-sm font-bold text-brand-primary border-b border-brand-primary/30 pb-0.5" target="_blank" rel="noopener">
+                {brand.name}のサイトを見る →
+              </a>
+            </div>
+          ))
+        }
+      </div>
     </section>
 
     <!-- 許認可情報 -->

@@ -1,0 +1,240 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/seo/Breadcrumb.astro";
+import { COMPANY } from "../data/company";
+import { JUNK_REMOVAL_PLANS, JUNK_REMOVAL_PRICE_NOTE } from "../data/pricing";
+
+const fullAddress = `〒${COMPANY.address.postalCode} ${COMPANY.address.addressRegion}${COMPANY.address.addressLocality}${COMPANY.address.streetAddress}`;
+const updatedAt = "2026年9月22日";
+
+const operator = [
+  { label: "事業者の名称", value: COMPANY.legalName },
+  { label: "屋号・サービス名", value: `${COMPANY.name}（ルネデザイン）／${COMPANY.brands.map((b) => b.name).join("／")}` },
+  { label: "代表者・業務責任者", value: COMPANY.representative },
+  { label: "所在地", value: fullAddress },
+  { label: "電話番号", value: `${COMPANY.tel}　受付 ${COMPANY.hours}` },
+  { label: "メールアドレス", value: COMPANY.email },
+  { label: "古物商許可番号", value: "愛知県公安委員会 古物商許可 第541052601400号" },
+];
+
+const estimateConditions = [
+  "解体しなければ搬出できない大型家具（タンス・ベッド・物置・システム家具など）がある場合（階段搬出・エレベーターなしの建物・養生は追加料金の対象ではありません）",
+  "お見積もり後に、品目・数量の追加をご希望された場合",
+  "対応エリア外への長距離出張、または通常受付時間外での作業をご希望の場合",
+  "害虫駆除・特殊清掃など、お見積もりに含まれない作業を併せてご依頼いただく場合",
+  "家電リサイクル法対象品（エアコン・テレビ・冷蔵庫・冷凍庫・洗濯機・衣類乾燥機）のリサイクル料金および収集運搬料金（買取が成立した場合は当社負担で0円）",
+];
+---
+
+<BaseLayout
+  title="特定商取引法に基づく表記"
+  description={`${COMPANY.legalName}（${COMPANY.name}）の特定商取引法に基づく表記です。事業者情報・料金・お支払い方法・キャンセルについてご確認いただけます。`}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <Breadcrumb items={[{ name: "特定商取引法に基づく表記", href: "/legal-notices/" }]} />
+
+    <h1 class="text-3xl font-bold text-brand-dark mb-2">特定商取引法に基づく表記</h1>
+    <p class="text-sm text-gray-500 mb-8">最終更新日：{updatedAt}</p>
+
+    <div class="space-y-10 text-gray-700 leading-relaxed">
+      <section class="space-y-4">
+        <p>
+          {COMPANY.legalName}（以下「当社」）は、特定商取引に関する法律（特定商取引法）、古物営業法、消費者契約法その他の関連法令を遵守し、お客様とのお取引にあたって以下の事項を表示します。
+        </p>
+        <p>当社の取引形態は次のとおりです。</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>不用品回収・遺品整理・引越し不用品の回収</strong>（役務の提供：お客様のご依頼に基づく搬出・引取り）</li>
+          <li><strong>ハウスクリーニング</strong>（役務の提供：お客様のご依頼に基づく清掃作業）</li>
+          <li><strong>買取</strong>（訪問購入：当社がご自宅等にお伺いし、お品物を査定・買取）</li>
+        </ul>
+      </section>
+
+      <!-- 1. 事業者情報 -->
+      <section>
+        <h2 class="text-xl font-bold text-brand-dark mb-4">1. 事業者情報</h2>
+        <dl class="divide-y divide-gray-200 border border-gray-200 rounded-md overflow-hidden">
+          {
+            operator.map((row) => (
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-6 py-4 bg-white even:bg-[#f8f7f6]">
+                <dt class="font-bold text-brand-primary text-sm">{row.label}</dt>
+                <dd class="sm:col-span-2 text-sm">{row.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <!-- 2. 料金 -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-brand-dark">2. 役務の対価（料金）</h2>
+        <h3 class="font-bold text-brand-dark">不用品回収の料金プラン</h3>
+        <div class="overflow-x-auto rounded-md border border-gray-200">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="text-left px-4 py-3 font-semibold text-gray-600">プラン</th>
+                <th class="text-right px-4 py-3 font-semibold text-gray-600 whitespace-nowrap">料金（税込）</th>
+                <th class="text-left px-4 py-3 font-semibold text-gray-600">目安</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-100">
+              {
+                JUNK_REMOVAL_PLANS.map((p) => (
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-brand-dark whitespace-nowrap">{p.plan}</td>
+                    <td class="px-4 py-3 text-right font-bold text-brand-primary whitespace-nowrap">{p.price}</td>
+                    <td class="px-4 py-3 text-gray-600">{p.guide}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm">{JUNK_REMOVAL_PRICE_NOTE}</p>
+        <p class="text-sm">
+          ハウスクリーニングの料金は<a href="/price/" class="text-brand-primary underline">料金案内</a>に記載のとおりです。
+        </p>
+
+        <h3 class="font-bold text-brand-dark pt-2">お見積もりで確認する条件（お見積もり後の追加請求はありません）</h3>
+        <p class="text-sm">
+          次の条件はお見積もり金額に反映します。お見積もりで確定した金額以外を、お見積もり後に追加でご請求することはありません。
+        </p>
+        <ul class="list-disc pl-6 space-y-1 text-sm">
+          {estimateConditions.map((c) => <li>{c}</li>)}
+        </ul>
+        <p class="text-sm">
+          お見積もり時にご申告いただいた内容と現場の状況が異なる場合（申告外の品目の追加など）は、作業開始前に金額と理由をご説明し、ご同意をいただいてから着手します。ご同意いただけない場合は、その場でキャンセルいただけます（出張費・見積もり費・キャンセル料はいただきません）。作業開始後にお客様のご承諾なく金額を変更することはありません。
+        </p>
+      </section>
+
+      <!-- 3. 支払 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-dark">3. 代金の支払時期・方法</h2>
+        <dl class="space-y-3 text-sm">
+          <div>
+            <dt class="font-bold text-brand-dark">作業料金（不用品回収・ハウスクリーニング）</dt>
+            <dd class="mt-1">
+              作業完了時にお支払いいただきます。お支払い方法は、現金・クレジットカード・PayPay・銀行振込（法人のお客様は請求書払い）に対応しています。クレジットカードでのお支払いは、料金の確定後から作業完了時までの間にお受けします。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-bold text-brand-dark">買取代金</dt>
+            <dd class="mt-1">
+              査定額にご納得いただけた場合、その場で現金でお支払いします。ご希望により銀行振込（即日）にも対応します。
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 4. 提供時期 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-dark">4. 役務の提供時期</h2>
+        <p class="text-sm">
+          ご依頼の確定時にお約束した日時に訪問し、確定した内容のとおりに作業を行います。物量が多い場合など、作業が複数日にわたるときは、事前に作業日程をご提示します。
+        </p>
+      </section>
+
+      <!-- 5. キャンセル -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-dark">5. キャンセル・お申込みの撤回</h2>
+        <p class="text-sm">
+          お見積もり提示後、ご依頼の確定（契約成立）前であれば、いつでも無料でキャンセルいただけます。出張費・見積もり費・査定費・キャンセル料は一切いただきません。
+        </p>
+        <p class="text-sm">
+          ご依頼確定後のキャンセル・日程の変更は、お電話（{COMPANY.tel}）でご連絡ください。買取の契約成立後のお取扱いは、次項「訪問購入（出張買取）における重要事項」をご確認ください。
+        </p>
+      </section>
+
+      <!-- 6. 訪問購入 -->
+      <section class="space-y-5">
+        <h2 class="text-xl font-bold text-brand-dark">6. 訪問購入（出張買取）における重要事項</h2>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">本人確認</h3>
+          <p class="text-sm">
+            古物営業法に基づき、買取契約時にご本人確認書類（運転免許証・マイナンバーカード・パスポート等）のご提示をお願いします。18歳未満の方からの買取はお受けできません。18歳以上20歳未満の方は、保護者の同意書および保護者の本人確認書類が必要です。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">クーリングオフ（特定商取引法第58条の14）</h3>
+          <p class="text-sm">
+            出張買取（訪問購入）でお買取りした物品については、特定商取引法第58条の8第1項に定める書面（法定書面）を受領した日から起算して8日間以内であれば、書面その他の方法により、契約の申込みの撤回または契約の解除（クーリングオフ）ができます。クーリングオフによる契約解除に伴う損害賠償・違約金等を請求することはありません。お品物の返送に要する費用も当社が負担します。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">物品の引渡しの拒絶（特定商取引法第58条の15）</h3>
+          <p class="text-sm">
+            クーリングオフ期間内（法定書面の交付日から起算して8日間）は、お売りいただいた物品の引渡しを拒むことができます。当社は、契約時にこの引渡しを拒絶できる旨を告知します。引渡しを留保されたい場合は、その旨をお申し出ください。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">書面の交付（特定商取引法第58条の7・第58条の8）</h3>
+          <p class="text-sm">
+            訪問購入の契約に際しては、物品の種類・特徴、買取価格、クーリングオフに関する事項、引渡しの拒絶に関する事項、当社の名称・住所・電話番号、担当者名等を記載した法定書面を、その場で必ずお渡しします。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">勧誘目的等の明示（特定商取引法第58条の5）</h3>
+          <p class="text-sm">
+            訪問に際しては、勧誘に先立ち、当社の名称、担当者名、買受けを目的として訪問した旨、および買い受けようとする物品の種類を明示します。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">不招請勧誘の禁止（特定商取引法第58条の6）</h3>
+          <p class="text-sm">
+            当社は、お客様からの事前のご依頼・ご請求がない場合に、訪問購入の勧誘を目的としてご自宅等へお伺いすることはありません。訪問は、お電話・メール・LINE等から事前にご依頼をいただいた場合に限ります。また、契約を締結しない旨の意思を示されたお客様に、勧誘を継続したり再度勧誘したりすることはありません。
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">クーリングオフの方法・通知先</h3>
+          <p class="text-sm">書面（はがき・封書）のほか、電子メール等の電磁的記録でも契約解除のご通知をお受けします。</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>書面：{fullAddress} {COMPANY.legalName} 宛</li>
+            <li>メール：{COMPANY.email}</li>
+            <li>電話：{COMPANY.tel}　受付 {COMPANY.hours}</li>
+          </ul>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-brand-dark">第三者への引渡しについての通知</h3>
+          <p class="text-sm">
+            クーリングオフ期間内にお品物を第三者へ引き渡した場合は、特定商取引法第58条の11に基づき、引渡先・引渡日等をお客様に通知します。
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. 個人情報 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-dark">7. 個人情報の取扱い</h2>
+        <p class="text-sm">
+          お客様の個人情報の取扱いについては、別途<a href="/privacy/" class="text-brand-primary underline">プライバシーポリシー</a>に定めています。古物営業法に基づく取引記録の作成・保存、および個人情報保護法に基づく適正な取扱いを徹底します。
+        </p>
+      </section>
+
+      <!-- 8. 苦情窓口 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-dark">8. 苦情・お問い合わせ窓口</h2>
+        <p class="text-sm">お取引の内容に関するご相談・苦情は、下記までご連絡ください。</p>
+        <div class="bg-brand-secondary rounded-md p-4 text-sm space-y-1">
+          <p class="font-bold">{COMPANY.legalName}（{COMPANY.name}）</p>
+          <p>TEL：{COMPANY.tel}</p>
+          <p>メール：{COMPANY.email}</p>
+          <p>受付時間：{COMPANY.hours}</p>
+        </div>
+        <p class="text-sm">
+          上記窓口で解決しない場合は、消費者ホットライン（188）、お住まいの市区町村の消費生活センター、または愛知県消費生活総合センターにご相談いただけます。
+        </p>
+      </section>
+
+      <p class="text-sm text-gray-500">
+        本表記は{updatedAt}に最終改定されました。関連法令・ガイドラインの改定や当社の運用変更にあわせ、随時更新します。
+      </p>
+    </div>
+  </div>
+</BaseLayout>

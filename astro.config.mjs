@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://renee-design.co.jp', // ドメイン確定後に更新
+  site: 'https://www.reneedesign.co.jp', // 旧値 renee-design.co.jp は存在しないドメインだった（2026-09-22）
   output: 'static',
 
   vite: {

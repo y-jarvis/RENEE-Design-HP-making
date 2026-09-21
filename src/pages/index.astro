@@ -157,26 +157,27 @@ import { FAQ_ITEMS } from "../data/faq";
 
       <div class="mb-14" data-animate>
         <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-2">ご利用の流れ</h2>
-        <p class="text-gray-500 text-sm">お問い合わせから作業完了まで、シンプルな4ステップです</p>
+        <p class="text-gray-500 text-sm">料金は作業の前に確定。ご承諾をいただいてからお伺いします</p>
       </div>
 
       <div class="space-y-0">
         {[
-          { n: "1", title: "お問い合わせ", body: "電話・LINE・メールでご連絡ください。内容をヒアリングし、概算費用をお伝えします。", note: "電話が最速です" },
-          { n: "2", title: "現地お見積もり（無料）", body: "ご希望に応じて現地へお伺いし、正確なお見積もりをご提示します。納得いただいてから作業開始。", note: "見積もり費用 ¥0" },
-          { n: "3", title: "作業実施", body: "ご指定の日時に伺い、丁寧・迅速に作業を行います。後片付けまで一括で対応します。", note: "" },
-          { n: "4", title: "お支払い・完了", body: "作業完了後にお支払いいただきます。現金・カード・PayPay対応。領収書発行可。", note: "" },
-        ].map((step, i) => (
+          { n: "1", title: "お問い合わせ", body: "電話・LINE・メールでご連絡ください。お品物や作業の内容、ご希望の日時をお伺いします。", note: "電話が最速です" },
+          { n: "2", title: "お見積もり・料金の確定", body: "お写真やお電話で内容を確認し、税込総額と訪問日をLINE等でご提示します。", note: "見積もり費用 ¥0" },
+          { n: "3", title: "ご依頼の確定", body: "ご提示した内容にご承諾いただいた時点でご依頼確定です。追加・変更は改めてご提示します。", note: "" },
+          { n: "4", title: "作業実施", body: "お約束の日時に伺い、確定した内容のとおりに作業します。後片付けまで一括で対応します。", note: "" },
+          { n: "5", title: "お支払い・完了", body: "作業完了後にお支払いいただきます。現金・カード・PayPay・振込対応。領収書発行可。", note: "" },
+        ].map((step, i, all) => (
           <div class="flex gap-6 relative" data-animate data-delay={String(i * 80)}>
             <!-- 縦線 -->
             <div class="flex flex-col items-center">
               <div class="w-10 h-10 bg-brand-primary text-white font-black text-base flex items-center justify-center flex-shrink-0 z-10">
                 {step.n}
               </div>
-              {i < 3 && <div class="w-px flex-1 bg-gray-200 my-1"></div>}
+              {i < all.length - 1 && <div class="w-px flex-1 bg-gray-200 my-1"></div>}
             </div>
             <!-- コンテンツ -->
-            <div class={`pb-${i < 3 ? "10" : "0"} pt-2 flex-1`}>
+            <div class={`${i < all.length - 1 ? "pb-10" : "pb-0"} pt-2 flex-1`}>
               <div class="flex flex-wrap items-center gap-3 mb-2">
                 <h3 class="font-black text-brand-dark text-lg">{step.title}</h3>
                 {step.note && (
