@@ -16,9 +16,8 @@ export const COMPANY = {
   // 連絡先
   tel: "052-990-3968",
   telHref: "tel:0529903968",
-  // 旧値 info@renee-design.co.jp はドメイン自体が存在せず届かなかった（2026-09-22 判明）。
-  // TODO(要確認): 公開前に掲載するアドレスをオーナーに確認する。暫定で徳丸の特商法ページと同じアドレス
-  email: "kaitori@tokumarushokai.com",
+  // 旧値 info@renee-design.co.jp はドメイン自体が存在せず届かなかった（2026-09-22 判明・オーナー指定で差し替え）
+  email: "info@reneedesign.co.jp",
 
   // 所在地
   address: {
