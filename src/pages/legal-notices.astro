@@ -5,7 +5,7 @@ import { COMPANY } from "../data/company";
 import { JUNK_REMOVAL_PLANS, JUNK_REMOVAL_PRICE_NOTE } from "../data/pricing";
 
 const fullAddress = `〒${COMPANY.address.postalCode} ${COMPANY.address.addressRegion}${COMPANY.address.addressLocality}${COMPANY.address.streetAddress}`;
-const updatedAt = "2026年9月22日";
+const updatedAt = "2026年10月31日";
 
 const operator = [
   { label: "事業者の名称", value: COMPANY.legalName },
@@ -28,7 +28,7 @@ const estimateConditions = [
 
 <BaseLayout
   title="特定商取引法に基づく表記"
-  description={`${COMPANY.legalName}（${COMPANY.name}）の特定商取引法に基づく表記です。事業者情報・料金・お支払い方法・キャンセルについてご確認いただけます。`}
+  description={`${COMPANY.legalName}の特定商取引法に基づく表記です。事業者情報・料金・お支払い方法・キャンセルについてご確認いただけます。`}
 >
   <div class="max-w-4xl mx-auto px-4 py-12">
     <Breadcrumb items={[{ name: "特定商取引法に基づく表記", href: "/legal-notices/" }]} />
@@ -222,7 +222,7 @@ const estimateConditions = [
         <h2 class="text-xl font-bold text-brand-dark">8. 苦情・お問い合わせ窓口</h2>
         <p class="text-sm">お取引の内容に関するご相談・苦情は、下記までご連絡ください。</p>
         <div class="bg-brand-secondary rounded-md p-4 text-sm space-y-1">
-          <p class="font-bold">{COMPANY.legalName}（{COMPANY.name}）</p>
+          <p class="font-bold">{COMPANY.legalName}</p>
           <p>TEL：{COMPANY.tel}</p>
           <p>メール：{COMPANY.email}</p>
           <p>受付時間：{COMPANY.hours}</p>
